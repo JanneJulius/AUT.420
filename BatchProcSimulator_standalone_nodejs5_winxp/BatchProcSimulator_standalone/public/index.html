@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- 
+	Petri Kannisto
+	TTI/AUT
+	Tampere University of Technology
+	Created: 5/2017
+	Modified: 7/2017
+	
+	Code taken from:
+	Server Side Events (SSE) in Java
+	http://eranmedan.com/server-side-events-sse-in-java
+	
+	See also:
+	http://stackoverflow.com/questions/11077857/what-are-long-polling-websockets-server-sent-events-sse-and-comet
+ -->
+
+<!-- The CSS bars code was modified from: -->
+<!-- CSS-only Vertical Goal (Progress) Bar   -->
+<!-- https://codepen.io/JulienMelissas/pen/dYWGKR -->
+
+<head>
+  
+  <meta http-equiv="encoding" content="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Batch Process Simulator</title>
+  
+  <link rel="stylesheet" href="style.css" />
+  <script src="index_js.js" type="application/javascript"></script>
+
+</head>
+
+<body>
+
+  <h1>Batch Process Simulator</h1>
+  <p>Tampere University of Technology</p>
+
+  <div>
+    <img src="pipes.png" id="pipes" width="699" height="583" alt="pipes" />
+  </div>
+  
+  <div>
+    <input id="reset-button" type="button" value="Reset" />
+  </div>
+
+  <div class="eq-grouping" id="group_t100">
+    <div id="t100" class="bar-container">
+	  <div class="goal-bar">
+	    <div class="bar-wrap">
+	      <div id="t100_level" class="bar">
+	        T100
+	      </div>
+	    </div>
+	  </div> <!-- /.goal-bar -->
+	</div>
+    <div class="eq-status" id="e100">E100</div>
+    <div class="eq-status" id="la_p_100">LA+100</div>
+    <div class="eq-status" id="li100">LI100</div>
+    <div class="eq-status" id="ti100">TI100</div>
+  </div>
+  
+  <div id="group_p100">
+    <div class="eq-status" id="fi100">FI100</div>
+    <div class="eq-status" id="p100">P100</div>
+    <div class="eq-status" id="v102">V102</div>
+  </div>
+  
+  <div class="eq-grouping" id="group_t200">
+    <div id="t200" class="bar-container">
+      <div class="goal-bar">
+        <div class="bar-wrap">
+          <div id="t200_level" class="bar">
+            T200
+          </div>
+        </div>
+      </div> <!-- /.goal-bar -->
+    </div>
+    <div class="eq-status" id="li200">LI200</div>
+    <div class="eq-status" id="ls_m_200">LS-200</div>
+  </div>
+  
+  <div id="group_p200" class="eq-grouping-white">
+    <div class="eq-status" id="p200">P200</div>
+    <div class="eq-status" id="v201">V201</div>
+    <div class="eq-status" id="v302">V302</div>
+    <div class="eq-status" id="v404">V404</div>
+  </div>
+  
+  <div class="eq-grouping" id="group_t300">
+    <div id="t300" class="bar-container-press">
+      <div class="goal-bar">
+        <div class="bar-wrap">
+          <div id="t300_level" class="bar">
+            T300
+          </div>
+        </div>
+      </div> <!-- /.goal-bar -->
+    </div>
+    <div class="eq-status" id="ls_p_300">LS+300</div>
+    <div class="eq-status" id="ls_m_300">LS-300</div>
+    <div class="eq-status" id="pi300">PI300</div>
+    <div class="eq-status" id="ti300">TI300</div>
+  </div>
+  
+  <div id="group_v3x" class="eq-grouping-white">
+    <div class="eq-status" id="v103">V103</div>
+    <div class="eq-status" id="v301">V301</div>
+    <div class="eq-status" id="v303">V303</div>
+    <div class="eq-status" id="v304">V304</div>
+  </div>
+  
+  <div class="eq-grouping" id="group_t400">
+    <div id="t400" class="bar-container">
+      <div class="goal-bar">
+        <div class="bar-wrap">
+          <div id="t400_level" class="bar">
+            T400
+          </div>
+        </div>
+      </div> <!-- /.goal-bar -->
+    </div>
+    <div class="eq-status" id="li400">LI400</div>
+  </div>
+  
+  <!-- These elements are not grouped -->
+  <div class="eq-status" id="v104">V104</div>
+  <div class="eq-status" id="v204">V204</div>
+  <div class="eq-status" id="v401">V401</div>
+  
+  <!-- V101 is irrelevant in the simulation -->
+  <!-- V202 is irrelevant in the simulation -->
+  <!-- V203 is irrelevant in the simulation -->
+  <!-- V402 is irrelevant in the simulation -->
+  <!-- V403 is irrelevant in the simulation -->
+  
+  <!-- <p id="raw_json"></p> -->
+  <p id="instruction">If you restart the simulator, please reload the page. If you press "reset" on this page, reload is not required.</p>
+  <p id="errorMsg"></p>
+  
+  <script type="application/javascript">
+  //<![CDATA[
+  
+  // Adding an event handler for the reset button
+  document.getElementById("reset-button").onclick = function ()
+  {
+      var xmlHttp = new XMLHttpRequest();
+      xmlHttp.onreadystatechange = function()
+      { 
+          if (xmlHttp.readyState === 4 && xmlHttp.status === 200)
+          {
+              callback(xmlHttp.responseText);
+          }
+      };
+      
+      xmlHttp.open("GET", "http://localhost:8088/reset", true); // true for asynchronous 
+      xmlHttp.send(null);
+  };
+  
+  //]]>
+  </script>
+  
+</body>
+</html>
