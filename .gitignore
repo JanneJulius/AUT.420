@@ -1,0 +1,43 @@
+# Ignore Visual Studio temporary files, build results, and
+# Windows OS file dumps
+*.obj
+*.exe
+*.pdb
+*.user
+*.aps
+*.pch
+*.vspscc
+*.vssscc
+
+# Ignore build output folders
+bin/
+obj/
+
+# Ignore Visual Studio folders
+.vs/
+
+# Ignore NuGet packages
+packages/
+*.nupkg
+
+# Ignore other generated files
+*.dll
+*.cache
+*.dbmdl
+*.log
+*.vsix
+*.suo
+*.orig
+*.ide
+
+# Ignore auto-generated files by Visual Studio and .NET
+*.g.i.cs
+*.g.cs
+*.Designer.cs
+*.AssemblyInfo.cs
+*.AssemblyReference.cache
+*.deps.json
+*.nuget.dgspec.json
+*.nuget.g.props
+*.nuget.g.targets
+project.assets.json
