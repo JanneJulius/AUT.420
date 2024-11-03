@@ -65,5 +65,11 @@
             <TextBlock Text="Tila: käynnissä/keskeytetty/alkutila" FontWeight="Bold" Margin="0,0,0,20"/>
             <TextBlock Text="Yhteys: online/offline" FontWeight="Bold" Margin="0,0,-78,-16"/>
         </Grid>
+
+        <Grid>
+            <ListBox ItemsSource="{Binding Logs}" Margin="616,217,52,15" />
+
+        </Grid>
+
     </Grid>
 </Window>

@@ -12,7 +12,8 @@ public class LogViewModel : INotifyPropertyChanged
         Application.Current.Dispatcher.Invoke(() => Logs.Add(message));
     }
 
-    public event PropertyChangedEventHandler PropertyChanged;
+    public event PropertyChangedEventHandler? PropertyChanged;
+
     protected void OnPropertyChanged(string propertyName)
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

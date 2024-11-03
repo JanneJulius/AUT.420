@@ -9,6 +9,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="C:\Users\Tiketti-JanneLahdent\.nuget\packages\nlog.config\4.7.15\contentFiles\any\any\NLog.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="NLog" Version="5.3.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Reference Include="Tuni.MppOpcUaClientLib">
       <HintPath>..\..\MppOpcUaClientLib_dll\MppOpcUaClientLib_dll\Tuni.MppOpcUaClientLib.dll</HintPath>
     </Reference>
