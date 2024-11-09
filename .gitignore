@@ -41,3 +41,7 @@ packages/
 *.nuget.g.props
 *.nuget.g.targets
 project.assets.json
+
+
+# Unignore the BatchProcSimulator_standalone folder
+!BatchProcSimulator_standalone/
