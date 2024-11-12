@@ -12,7 +12,7 @@
             <ProgressBar x:Name="ProgressBarT100" Width="100" Height="150" Value="50" Orientation="Vertical" HorizontalAlignment="Center"/>
 
             <!-- T100 Label -->
-            <TextBlock Text="T100 XX (unit)" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,160,0,0"/>
+            <TextBlock Text="T100 XX (unit)" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
 
             <!-- T100 Temperature -->
             <TextBlock Text="T100 Lämpötila?: (unit)" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,180,0,0"/>
@@ -24,7 +24,7 @@
             <ProgressBar x:Name="ProgressBarT200" Width="100" Height="150" Value="30" Orientation="Vertical" HorizontalAlignment="Center"/>
 
             <!-- T200 Label -->
-            <TextBlock Text="T200 XX (unit)" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,160,0,0"/>
+            <TextBlock Text="T200 XX (unit)" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
 
             <!-- T200 Temperature -->
             <TextBlock Text="T200 Lämpötila?: (unit)" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,180,0,0"/>
@@ -36,7 +36,7 @@
             <ProgressBar x:Name="ProgressBarT400" Width="100" Height="150" Value="20" Orientation="Vertical" HorizontalAlignment="Center"/>
 
             <!-- T400 Label -->
-            <TextBlock Text="T400 XX (unit)" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,160,0,0"/>
+            <TextBlock Text="T400 XX (unit)" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
 
             <!-- T400 Temperature -->
             <TextBlock Text="T400 Lämpötila?: (unit)" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,180,0,0"/>
@@ -56,13 +56,13 @@
 
         <!-- Buttons -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,300,0,0">
-            <Button Content="Käynnistä/Keskeytä" Width="150" Height="50" Margin="0,0,20,0"/>
+            <Button Content="Käynnistä/Keskeytä" Width="150" Height="50" Margin="-112.5,0,20,0"/>
             <Button Content="Palauta" Width="150" Height="50" Margin="170,0,0,0"/>
         </Grid>
 
         <!-- Status and Connection -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,300,0,0">
-            <TextBlock Text="Tila: käynnissä/keskeytetty/alkutila" FontWeight="Bold" Margin="0,0,0,20"/>
+            <TextBlock Text="Tila: käynnissä/keskeytetty/alkutila" FontWeight="Bold" Margin="0,20,0,20"/>
             <TextBlock Text="Yhteys: online/offline" FontWeight="Bold" Margin="0,0,-78,-16"/>
         </Grid>
 
