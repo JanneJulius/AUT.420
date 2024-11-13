@@ -36,14 +36,17 @@ namespace PulpProcessAppDotNet4
         public MainWindow()
         {
             InitializeComponent();
-            InitializeState();
+            
 
             // Access the shared ViewModel
             var app = (App)Application.Current;
-            DataContext = app.LogViewModel; // Set the DataContext to the shared ViewModel
+            // DataContext = app.LogViewModel; // Set the DataContext to the shared ViewModel
 
             // Initialize the ProcessCommunicator
             processCommunicator = new ProcessCommunicator();
+            DataContext = processCommunicator.ProcessData;  // Bind UI to ProcessData
+
+            InitializeState();
             processCommunicator.InitializeAsync().ConfigureAwait(false);
         }
         private void InitializeState()
@@ -53,6 +56,9 @@ namespace PulpProcessAppDotNet4
         }
         private void UpdateUI()
         {
+            // Update the connection status display
+            ConnectionStatusTextBlock.Text = processCommunicator.IsConnected ? "Yhteys: online" : "Yhteys: offline";
+
             switch (currentState)
             {
                 case ProcessState.Alkutila:
@@ -69,7 +75,7 @@ namespace PulpProcessAppDotNet4
                     break;
             }
         }
-        // Button click event to open ParameterWindow
+        // Button click event to open ParameterWindow, now a state manager too.
         private void OnStart(object sender, RoutedEventArgs e)
         {
             if (currentState == ProcessState.Alkutila)
@@ -83,20 +89,20 @@ namespace PulpProcessAppDotNet4
             }
             else if (currentState == ProcessState.Kaynnissa)
             {
-                // If the process is running, pressing "Keskeytä" pauses it
+                // Current implementation works as play/pause button, change if needed
                 currentState = ProcessState.Keskeytetty;
                 UpdateUI();
             }
             else if (currentState == ProcessState.Keskeytetty)
             {
-                // If paused, pressing "Keskeytä" resumes the process
+                // "pause"
                 currentState = ProcessState.Kaynnissa;
                 UpdateUI();
             }
         }
         private void OnReset(object sender, RoutedEventArgs e)
         {
-            // Return to the initial state regardless of the current state
+            // Return to alkutila.
             currentState = ProcessState.Alkutila;
             UpdateUI();
         }

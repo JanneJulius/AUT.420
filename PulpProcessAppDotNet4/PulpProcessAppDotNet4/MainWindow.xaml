@@ -1,57 +1,62 @@
 ﻿<Window x:Class="PulpProcessAppDotNet4.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:helpers="clr-namespace:PulpProcessAppDotNet4.Helpers"
+        d:DataContext="{d:DesignInstance Type='helpers:ProcessData', IsDesignTimeCreatable=True}"
         Title="Säiliöiden tila" Height="450" Width="800">
     <Grid>
         <!-- Title -->
         <TextBlock Text="Säiliöiden tila" FontSize="20" FontWeight="Bold" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
 
-        <!-- T100 Section -->
+        <!-- LI100 Section -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,50,0,0">
             <!-- Progress Bar -->
-            <ProgressBar x:Name="ProgressBarT100" Width="100" Height="150" Value="50" Orientation="Vertical" HorizontalAlignment="Center"/>
+            <ProgressBar x:Name="ProgressBarLI100" Width="100" Height="150" Value="50" Orientation="Vertical" HorizontalAlignment="Center"/>
 
-            <!-- T100 Label -->
-            <TextBlock Text="T100 XX (unit)" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
+            <!-- LI100 Label -->
+            <TextBlock Text="{Binding LI100}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
 
-            <!-- T100 Temperature -->
-            <TextBlock Text="T100 Lämpötila?: (unit)" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,180,0,0"/>
+            <!-- LI100 Height -->
+            <TextBlock Text="LI100 korkeus" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,180,0,0"/>
         </Grid>
 
-        <!-- T200 Section -->
+        <!-- LI200 Section -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,50,0,0">
             <!-- Progress Bar -->
-            <ProgressBar x:Name="ProgressBarT200" Width="100" Height="150" Value="30" Orientation="Vertical" HorizontalAlignment="Center"/>
+            <ProgressBar x:Name="ProgressBarLI200" Width="100" Height="150" Value="30" Orientation="Vertical" HorizontalAlignment="Center"/>
 
-            <!-- T200 Label -->
-            <TextBlock Text="T200 XX (unit)" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
+            <!-- LI200 Label -->
+            <TextBlock Text="{Binding LI200}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
 
-            <!-- T200 Temperature -->
-            <TextBlock Text="T200 Lämpötila?: (unit)" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,180,0,0"/>
+            <!-- LI200 Height -->
+            <TextBlock Text="LI200 korkeus" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,180,0,0"/>
         </Grid>
 
-        <!-- T400 Section -->
+        <!-- LI400 Section -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="290,50,0,0">
             <!-- Progress Bar -->
-            <ProgressBar x:Name="ProgressBarT400" Width="100" Height="150" Value="20" Orientation="Vertical" HorizontalAlignment="Center"/>
+            <ProgressBar x:Name="ProgressBarLI400" Width="100" Height="150" Value="20" Orientation="Vertical" HorizontalAlignment="Center"/>
 
-            <!-- T400 Label -->
-            <TextBlock Text="T400 XX (unit)" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
+            <!-- LI400 Label -->
+            <TextBlock Text="{Binding LI400}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
 
-            <!-- T400 Temperature -->
-            <TextBlock Text="T400 Lämpötila?: (unit)" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,180,0,0"/>
+            <!-- LI400 Height -->
+            <TextBlock Text="LI400 korkeus" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,180,0,0"/>
         </Grid>
 
-        <!-- T300 Lämpötila Bar -->
+        <!-- TI300 Lämpötila Bar -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="450,50,0,0">
             <Rectangle Fill="Orange" Width="100" Height="20" HorizontalAlignment="Left"/>
-            <TextBlock Text="T300 Lämpötila: (unit)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,0,0,0"/>
+            <TextBlock Text="TI300 Lämpötila: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,0,0,0"/>
+            <TextBlock Text="{Binding TI300}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,0,0,0"/>
         </Grid>
 
-        <!-- T300 Paine Gauge (Placeholder for Gauge Control) -->
+        <!-- PI300 Paine Gauge (Placeholder for Gauge Control) -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="450,100,0,0">
             <Ellipse Width="100" Height="100" Fill="Gray" HorizontalAlignment="Left"/>
-            <TextBlock Text="T300 Paine: (unit)" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,40,0,0"/>
+            <TextBlock Text="PI300 Paine: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,40,0,0"/>
+            <TextBlock Text="{Binding PI300}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,40,0,0"/>
         </Grid>
 
         <!-- Buttons -->
@@ -64,7 +69,7 @@
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,300,0,0">
             <TextBlock Text="Tila:" FontWeight="Bold" Margin="0,20,0,0"/>
             <TextBlock x:Name="StatusTextBlock" Text="alkutila" FontWeight="Bold" Margin="40,20,0,0"/>
-            <TextBlock Text="Yhteys: online/offline" FontWeight="Bold" Margin="0,0,-78,-16"/>
+            <TextBlock x:Name="ConnectionStatusTextBlock" Text="Yhteys: offline" FontWeight="Bold" Margin="0,0,-78,-16"/>
         </Grid>
 
         <Grid>
