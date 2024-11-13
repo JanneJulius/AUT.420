@@ -56,13 +56,14 @@
 
         <!-- Buttons -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,300,0,0">
-            <Button Content="Käynnistä/Keskeytä" Width="150" Height="50" Margin="-112.5,0,20,0"/>
-            <Button Content="Palauta" Width="150" Height="50" Margin="170,0,0,0"/>
+            <Button x:Name="StartPauseButton" Width="150" Height="50" Margin="-112.5,0,20,0" Click="OnStart"/>
+            <Button Content="Palauta" Width="150" Height="50" Margin="170,0,0,0" Click="OnReset"/>
         </Grid>
 
         <!-- Status and Connection -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="400,300,0,0">
-            <TextBlock Text="Tila: käynnissä/keskeytetty/alkutila" FontWeight="Bold" Margin="0,20,0,20"/>
+            <TextBlock Text="Tila:" FontWeight="Bold" Margin="0,20,0,0"/>
+            <TextBlock x:Name="StatusTextBlock" Text="alkutila" FontWeight="Bold" Margin="40,20,0,0"/>
             <TextBlock Text="Yhteys: online/offline" FontWeight="Bold" Margin="0,0,-78,-16"/>
         </Grid>
 
