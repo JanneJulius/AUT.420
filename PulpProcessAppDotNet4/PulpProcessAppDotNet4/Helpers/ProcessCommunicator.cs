@@ -9,22 +9,6 @@ using System.Windows;
 
 namespace PulpProcessAppDotNet4.Helpers
 {
-
-    /// <summary>
-    /// Represents a collection of key process metrics.
-    /// </summary>
-    public struct ProcessData
-    {
-        public int LI100;
-        public int LI200;
-        public int PI300;
-        public double TI300;
-        public int LI400;
-        public bool LSplus300;
-        public bool LSminus300;
-    }
-
-
     /// <summary>
     /// Manages the connection with the external process API.
     /// </summary>
@@ -38,7 +22,7 @@ namespace PulpProcessAppDotNet4.Helpers
         private ConnectionParamsHolder connectionConfig;
 
         public bool IsConnected { get; private set; } = IS_DISCONNECTED;
-        public ProcessData processData;
+        public ProcessData ProcessData { get; private set; } = new ProcessData();
 
         private readonly Dictionary<string, Action<MppValue>> processItemHandlers;
 
@@ -51,13 +35,13 @@ namespace PulpProcessAppDotNet4.Helpers
             // Define mappings between item keys and actions
             processItemHandlers = new Dictionary<string, Action<MppValue>>
             {
-                { "LI100", value => processData.LI100 = (int)value.GetValue() },
-                { "LI200", value => processData.LI200 = (int)value.GetValue() },
-                { "PI300", value => processData.PI300 = (int)value.GetValue() },
-                { "TI300", value => processData.TI300 = (double)value.GetValue() },
-                { "LI400", value => processData.LI400 = (int)value.GetValue() },
-                { "LS+300", value => processData.LSplus300 = (bool)value.GetValue() },
-                { "LS-300", value => processData.LSminus300 = (bool)value.GetValue() }
+                { "LI100", value => ProcessData.LI100 = (int)value.GetValue() },
+                { "LI200", value => ProcessData.LI200 = (int)value.GetValue() },
+                { "PI300", value => ProcessData.PI300 = (int)value.GetValue() },
+                { "TI300", value => ProcessData.TI300 = (double)value.GetValue() },
+                { "LI400", value => ProcessData.LI400 = (int)value.GetValue() },
+                { "LS+300", value => ProcessData.LSplus300 = (bool)value.GetValue() },
+                { "LS-300", value => ProcessData.LSminus300 = (bool)value.GetValue() }
             };
 
         }

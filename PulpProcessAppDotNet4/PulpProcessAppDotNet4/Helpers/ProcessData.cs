@@ -1,5 +1,9 @@
 ﻿using System.ComponentModel;
 
+
+/// <summary>
+/// Represents a collection of key process metrics.
+/// </summary>
 public class ProcessData : INotifyPropertyChanged
 {
     private int _LI100;
@@ -43,8 +47,8 @@ public class ProcessData : INotifyPropertyChanged
             }
         }
     }
-    private int _TI300;
-    public int TI300
+    private double _TI300;
+    public double TI300
     {
         get => _TI300;
         set
@@ -69,8 +73,8 @@ public class ProcessData : INotifyPropertyChanged
             }
         }
     }
-    private int _LSplus300;
-    public int LSplus300
+    private bool _LSplus300;
+    public bool LSplus300
     {
         get => _LSplus300;
         set
@@ -83,8 +87,8 @@ public class ProcessData : INotifyPropertyChanged
         }
     }
 
-    private int _LSminus300;
-    public int LSminus300
+    private bool _LSminus300;
+    public bool LSminus300
     {
         get => _LSminus300;
         set
