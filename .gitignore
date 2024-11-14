@@ -21,7 +21,6 @@ packages/
 *.nupkg
 
 # Ignore other generated files
-*.dll
 *.cache
 *.dbmdl
 *.log
@@ -45,3 +44,8 @@ project.assets.json
 
 # Unignore the BatchProcSimulator_standalone folder
 !BatchProcSimulator_standalone/
+
+
+
+# Unignore the MppOpcUaClientLib_dll folder
+!MppOpcUaClientLib_dll/
