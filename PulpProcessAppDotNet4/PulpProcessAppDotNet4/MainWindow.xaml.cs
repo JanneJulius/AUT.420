@@ -136,6 +136,38 @@ namespace PulpProcessAppDotNet4
             }
         }
 
+        /// <summary>
+        /// Handles the button click event to run the whole sequence.
+        /// </summary>
+        private async void RunSequenceButton_Click(object sender, RoutedEventArgs e)
+        {
+            RunSequenceButton.IsEnabled = false; // Disable the button to prevent multiple clicks
+            try
+            {
+
+                // Initialize a helper for running the sequence
+                var sequenceHandler = new SequenceHandler(
+                    durationCooking: 300, 
+                    targetTemperature: 90.0, 
+                    targetPressure: 15.0,
+                    impregnationTime: 120, 
+                    initCommunicator: processCommunicator
+                );
+
+                bool success = await Task.Run(() => sequenceHandler.RunWholeSequence());
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+            finally
+            {
+                RunSequenceButton.IsEnabled = true; // Re-enable the button
+            }
+        }
+
+
         private void UpdateButtonState()
         {
             if (processCommunicator.IsConnected)
