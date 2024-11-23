@@ -2,6 +2,9 @@
 using System.ComponentModel;
 using System.Windows;
 
+/// <summary>
+/// Current logging model viewable from UI directly using DataContext.
+/// </summary>
 public class LogViewModel : INotifyPropertyChanged
 {
     public ObservableCollection<string> Logs { get; set; } = new ObservableCollection<string>();

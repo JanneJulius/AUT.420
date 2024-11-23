@@ -22,7 +22,7 @@ namespace PulpProcessAppDotNet4.Helpers
         private ConnectionParamsHolder connectionConfig;
 
         public bool IsConnected { get; private set; } = IS_DISCONNECTED;
-        public ProcessData ProcessData { get; private set; } = new ProcessData();
+        public ProcessData ProcessData { get; private set; }
 
         private readonly Dictionary<string, Action<MppValue>> processItemHandlers;
 
@@ -30,6 +30,7 @@ namespace PulpProcessAppDotNet4.Helpers
 
         public  ProcessCommunicator()
         {
+            var ProcessData= new ProcessData();
             connectionConfig = new ConnectionParamsHolder(API_ENDPOINT);
 
             // Define mappings between item keys and actions
@@ -43,9 +44,10 @@ namespace PulpProcessAppDotNet4.Helpers
                 { "LS+300", value => ProcessData.LSplus300 = (bool)value.GetValue() },
                 { "LS-300", value => ProcessData.LSminus300 = (bool)value.GetValue() }
             };
-
         }
-
+        /// <summary>
+        /// Initializes the OPC UA Client and adds handlers for connection status and process instrument events.
+        /// </summary>
         public async Task InitializeAsync()
         {
             try
@@ -63,6 +65,7 @@ namespace PulpProcessAppDotNet4.Helpers
                 IsConnected = IS_CONNECTED;
                 log.Info("Connection established successfully.");
             }
+
             catch (Exception ex)
             {
                 log.Error(ex, "Connection failed.");

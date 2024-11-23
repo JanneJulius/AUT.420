@@ -18,16 +18,16 @@ using System.Windows.Threading;
 
 namespace PulpProcessAppDotNet4
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    /// 
+
     public enum ProcessState
     {
         Alkutila,
         Kaynnissa,
         Keskeytetty
     }
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
     public partial class MainWindow : Window
     {
         private ProcessCommunicator processCommunicator;
@@ -40,7 +40,7 @@ namespace PulpProcessAppDotNet4
 
             // Access the shared ViewModel
             var app = (App)Application.Current;
-            // DataContext = app.LogViewModel; // Set the DataContext to the shared ViewModel
+            //DataContext = app.LogViewModel; // Set the DataContext to the shared ViewModel
 
             // Initialize the ProcessCommunicator
             processCommunicator = new ProcessCommunicator();
@@ -75,7 +75,7 @@ namespace PulpProcessAppDotNet4
                     break;
             }
         }
-        // Button click event to open ParameterWindow, now a state manager too.
+        // Button click event to open ParameterWindow, now a state manager too. TODO: Refactor.
         private void OnStart(object sender, RoutedEventArgs e)
         {
             if (currentState == ProcessState.Alkutila)
