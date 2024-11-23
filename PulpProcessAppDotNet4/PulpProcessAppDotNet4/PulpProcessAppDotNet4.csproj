@@ -24,6 +24,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\PulpProcessAppDotNet4.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -52,7 +53,7 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="Tuni.MppOpcUaClientLib">
-      <HintPath>..\..\MppOpcUaClientLib_dll\Tuni.MppOpcUaClientLib.dll</HintPath>
+      <HintPath>..\..\MppOpcUaClientLib_dll\MppOpcUaClientLib_dll\Tuni.MppOpcUaClientLib.dll</HintPath>
     </Reference>
     <Reference Include="UnifiedAutomation.UaBase">
       <HintPath>..\..\MppOpcUaClientLib_dll\UnifiedAutomation.UaBase.dll</HintPath>
@@ -79,6 +80,7 @@
     </Compile>
     <Compile Include="Helpers\ObservableCollectionTarget.cs" />
     <Compile Include="Helpers\ProcessCommunicator.cs" />
+    <Compile Include="Helpers\ProcessData.cs" />
     <Compile Include="LogViewModel\LogViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -100,11 +102,6 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
