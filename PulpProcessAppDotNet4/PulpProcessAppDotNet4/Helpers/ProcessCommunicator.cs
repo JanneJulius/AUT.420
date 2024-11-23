@@ -9,6 +9,22 @@ using System.Windows;
 
 namespace PulpProcessAppDotNet4.Helpers
 {
+
+    /// <summary>
+    /// Represents a collection of key process metrics.
+    /// </summary>
+    public struct ProcessData
+    {
+        public int LI100;
+        public int LI200;
+        public int PI300;
+        public double TI300;
+        public int LI400;
+        public bool LSplus300;
+        public bool LSminus300;
+    }
+
+
     /// <summary>
     /// Manages the connection with the external process API.
     /// </summary>
@@ -17,18 +33,18 @@ namespace PulpProcessAppDotNet4.Helpers
         private const string API_ENDPOINT = "opc.tcp://127.0.0.1:8087";
         private const bool IS_CONNECTED = true;
         private const bool IS_DISCONNECTED = false;
+        private string lastConnectionStatus = null;
 
         private MppClient apiClient;
         private ConnectionParamsHolder connectionConfig;
 
         public bool IsConnected { get; private set; } = IS_DISCONNECTED;
-        public ProcessData ProcessData { get; private set; } = new ProcessData();
-
+        public ProcessData ProcessData;
         private readonly Dictionary<string, Action<MppValue>> processItemHandlers;
 
         private static Logger log = App.logger;
 
-        public  ProcessCommunicator()
+        public ProcessCommunicator()
         {
             connectionConfig = new ConnectionParamsHolder(API_ENDPOINT);
 
@@ -46,47 +62,50 @@ namespace PulpProcessAppDotNet4.Helpers
 
         }
 
-        public async Task InitializeAsync()
+        public bool Initialize()
         {
+
             try
             {
                 apiClient = new MppClient(connectionConfig);
+
+
                 // Attach event handlers
-                apiClient.ConnectionStatus += OnConnectionStatusChanged;
-                apiClient.ProcessItemsChanged += OnProcessItemsChanged;
-
-                // Initialize the API client asynchronously
-                await Task.Run(() => apiClient.Init());  // Run this on a background thread
-
-                await AddSubscriptionsAsync();  // Ensure subscriptions are added asynchronously
+                apiClient.ConnectionStatus += new MppClient.ConnectionStatusEventHandler(OnConnectionStatusChanged);
+                apiClient.ProcessItemsChanged += new MppClient.ProcessItemsChangedEventHandler(OnProcessItemsChanged);
+                apiClient.Init();
+                //Task.Run(() => apiClient.Init()).Wait();
+                AddSubscriptions();
 
                 IsConnected = IS_CONNECTED;
                 log.Info("Connection established successfully.");
+                return true;
             }
             catch (Exception ex)
             {
-                log.Error(ex, "Connection failed.");
+                log.Error(ex, $"Connection attempt  failed.");   
+                return false;
             }
+            
         }
 
-        private async Task AddSubscriptionsAsync()
+        private  bool AddSubscriptions()
         {
             try
             {
-                // Add subscriptions asynchronously
-                await Task.Run(() =>
+       
+                foreach (var itemKey in processItemHandlers.Keys)
                 {
-                    foreach (var itemKey in processItemHandlers.Keys)
-                    {
-                        apiClient.AddToSubscription(itemKey);
-                    }
-                });
+                    apiClient.AddToSubscription(itemKey);
+                }
 
                 log.Info("Subscriptions added successfully.");
+                return true;
             }
             catch (Exception ex)
             {
                 log.Error(ex, "Failed to add subscriptions.");
+                return false;
             }
         }
 
@@ -94,8 +113,18 @@ namespace PulpProcessAppDotNet4.Helpers
         {
             try
             {
-                IsConnected = e.StatusInfo.FullStatusString == "Connected";
-                log.Info($"Connection status updated: {(IsConnected ? "Connected" : "Disconnected")}");
+              
+                string currentStatus = e.StatusInfo.FullStatusString;
+
+                // Avoid duplicate status logs
+                if (currentStatus == lastConnectionStatus)
+                    return;
+
+                lastConnectionStatus = currentStatus;
+                IsConnected = currentStatus == "Connected";
+
+                log.Info($"Connection status updated: {currentStatus}");
+                
             }
             catch (Exception ex)
             {
@@ -128,8 +157,32 @@ namespace PulpProcessAppDotNet4.Helpers
             }
         }
 
+        // Disconnects the client if connected
+        public async Task<bool> DisconnectAsync()
+        {
+            if (IsConnected && apiClient != null)
+            {
+                await Task.Run(() =>
+                {
+                    apiClient.Dispose(); // Run Dispose on a background thread
+                    apiClient = null;
+                });
 
+                IsConnected = IS_DISCONNECTED;
+                log.Info("Disconnected successfully.");
+                return true;
+            }
+            else
+            {
+                log.Warn("Attempted to disconnect when already disconnected.");
+                return false;
+            }
+        }
 
-
+        // Reconnects by reinitializing the client connection
+        public Task<bool> ReconnectAsync()
+        {
+            return Task.Run(() => Initialize());
+        }
     }
 }
