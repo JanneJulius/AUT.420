@@ -13,15 +13,15 @@ namespace PulpProcessAppDotNet4.Helpers
     /// <summary>
     /// Represents a collection of key process metrics.
     /// </summary>
-    public struct ProcessData
+    public class ProcessData
     {
-        public int LI100;
-        public int LI200;
-        public int PI300;
-        public double TI300;
-        public int LI400;
-        public bool LSplus300;
-        public bool LSminus300;
+        public int LI100 { get; set; }
+        public int LI200 { get; set; }
+        public int PI300 { get; set; }
+        public double TI300 { get; set; }
+        public int LI400 { get; set; }
+        public bool LSplus300 { get; set; }
+        public bool LSminus300 { get; set; }
     }
 
 
@@ -35,11 +35,11 @@ namespace PulpProcessAppDotNet4.Helpers
         private const bool IS_DISCONNECTED = false;
         private string lastConnectionStatus = null;
 
-        private MppClient apiClient;
+        public MppClient apiClient;
         private ConnectionParamsHolder connectionConfig;
 
         public bool IsConnected { get; private set; } = IS_DISCONNECTED;
-        public ProcessData ProcessData;
+        public ProcessData ProcessData { get; private set; } = new ProcessData();
         private readonly Dictionary<string, Action<MppValue>> processItemHandlers;
 
         private static Logger log = App.logger;
