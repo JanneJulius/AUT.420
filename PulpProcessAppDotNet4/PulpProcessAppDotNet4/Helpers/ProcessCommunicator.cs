@@ -33,76 +33,79 @@ namespace PulpProcessAppDotNet4.Helpers
         private const string API_ENDPOINT = "opc.tcp://127.0.0.1:8087";
         private const bool IS_CONNECTED = true;
         private const bool IS_DISCONNECTED = false;
+        private string lastConnectionStatus = null;
 
         private MppClient apiClient;
         private ConnectionParamsHolder connectionConfig;
 
         public bool IsConnected { get; private set; } = IS_DISCONNECTED;
-        public ProcessData processData;
-
+        public ProcessData ProcessData;
         private readonly Dictionary<string, Action<MppValue>> processItemHandlers;
 
         private static Logger log = App.logger;
 
-        public  ProcessCommunicator()
+        public ProcessCommunicator()
         {
             connectionConfig = new ConnectionParamsHolder(API_ENDPOINT);
 
             // Define mappings between item keys and actions
             processItemHandlers = new Dictionary<string, Action<MppValue>>
             {
-                { "LI100", value => processData.LI100 = (int)value.GetValue() },
-                { "LI200", value => processData.LI200 = (int)value.GetValue() },
-                { "PI300", value => processData.PI300 = (int)value.GetValue() },
-                { "TI300", value => processData.TI300 = (double)value.GetValue() },
-                { "LI400", value => processData.LI400 = (int)value.GetValue() },
-                { "LS+300", value => processData.LSplus300 = (bool)value.GetValue() },
-                { "LS-300", value => processData.LSminus300 = (bool)value.GetValue() }
+                { "LI100", value => ProcessData.LI100 = (int)value.GetValue() },
+                { "LI200", value => ProcessData.LI200 = (int)value.GetValue() },
+                { "PI300", value => ProcessData.PI300 = (int)value.GetValue() },
+                { "TI300", value => ProcessData.TI300 = (double)value.GetValue() },
+                { "LI400", value => ProcessData.LI400 = (int)value.GetValue() },
+                { "LS+300", value => ProcessData.LSplus300 = (bool)value.GetValue() },
+                { "LS-300", value => ProcessData.LSminus300 = (bool)value.GetValue() }
             };
 
         }
 
-        public async Task InitializeAsync()
+        public bool Initialize()
         {
+
             try
             {
                 apiClient = new MppClient(connectionConfig);
+
+
                 // Attach event handlers
-                apiClient.ConnectionStatus += OnConnectionStatusChanged;
-                apiClient.ProcessItemsChanged += OnProcessItemsChanged;
-
-                // Initialize the API client asynchronously
-                await Task.Run(() => apiClient.Init());  // Run this on a background thread
-
-                await AddSubscriptionsAsync();  // Ensure subscriptions are added asynchronously
+                apiClient.ConnectionStatus += new MppClient.ConnectionStatusEventHandler(OnConnectionStatusChanged);
+                apiClient.ProcessItemsChanged += new MppClient.ProcessItemsChangedEventHandler(OnProcessItemsChanged);
+                apiClient.Init();
+                //Task.Run(() => apiClient.Init()).Wait();
+                AddSubscriptions();
 
                 IsConnected = IS_CONNECTED;
                 log.Info("Connection established successfully.");
+                return true;
             }
             catch (Exception ex)
             {
-                log.Error(ex, "Connection failed.");
+                log.Error(ex, $"Connection attempt  failed.");   
+                return false;
             }
+            
         }
 
-        private async Task AddSubscriptionsAsync()
+        private  bool AddSubscriptions()
         {
             try
             {
-                // Add subscriptions asynchronously
-                await Task.Run(() =>
+       
+                foreach (var itemKey in processItemHandlers.Keys)
                 {
-                    foreach (var itemKey in processItemHandlers.Keys)
-                    {
-                        apiClient.AddToSubscription(itemKey);
-                    }
-                });
+                    apiClient.AddToSubscription(itemKey);
+                }
 
                 log.Info("Subscriptions added successfully.");
+                return true;
             }
             catch (Exception ex)
             {
                 log.Error(ex, "Failed to add subscriptions.");
+                return false;
             }
         }
 
@@ -110,8 +113,18 @@ namespace PulpProcessAppDotNet4.Helpers
         {
             try
             {
-                IsConnected = e.StatusInfo.FullStatusString == "Connected";
-                log.Info($"Connection status updated: {(IsConnected ? "Connected" : "Disconnected")}");
+              
+                string currentStatus = e.StatusInfo.FullStatusString;
+
+                // Avoid duplicate status logs
+                if (currentStatus == lastConnectionStatus)
+                    return;
+
+                lastConnectionStatus = currentStatus;
+                IsConnected = currentStatus == "Connected";
+
+                log.Info($"Connection status updated: {currentStatus}");
+                
             }
             catch (Exception ex)
             {
@@ -144,8 +157,32 @@ namespace PulpProcessAppDotNet4.Helpers
             }
         }
 
+        // Disconnects the client if connected
+        public async Task<bool> DisconnectAsync()
+        {
+            if (IsConnected && apiClient != null)
+            {
+                await Task.Run(() =>
+                {
+                    apiClient.Dispose(); // Run Dispose on a background thread
+                    apiClient = null;
+                });
 
+                IsConnected = IS_DISCONNECTED;
+                log.Info("Disconnected successfully.");
+                return true;
+            }
+            else
+            {
+                log.Warn("Attempted to disconnect when already disconnected.");
+                return false;
+            }
+        }
 
-
+        // Reconnects by reinitializing the client connection
+        public Task<bool> ReconnectAsync()
+        {
+            return Task.Run(() => Initialize());
+        }
     }
 }

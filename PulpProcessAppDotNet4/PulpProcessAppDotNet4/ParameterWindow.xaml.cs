@@ -23,5 +23,13 @@ namespace PulpProcessAppDotNet4
         {
             InitializeComponent();
         }
+
+        // Event handler for the "Aseta" button
+        private void OnSetParameters(object sender, RoutedEventArgs e)
+        {
+            // Perform any parameter-setting actions here
+
+            this.Close();
+        }
     }
 }
