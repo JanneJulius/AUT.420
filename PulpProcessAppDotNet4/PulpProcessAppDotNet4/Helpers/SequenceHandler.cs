@@ -74,8 +74,10 @@ namespace PulpProcessAppDotNet4.Helpers
             {
                 log.Info("Starting whole sequence...");
 
+                
+                apiClient.SetOnOffItem("P100_P200_PRESET", true);
+
                 // Step 1: Impregnation
-                log.Info("Running Impregnation...");
                 if (!RunImpregnation())
                 {
                     log.Error("Failed during Impregnation. Aborting...");
@@ -83,7 +85,6 @@ namespace PulpProcessAppDotNet4.Helpers
                 }
 
                 // Step 2: Black Liquor Fill
-                log.Info("Running Black Liquor Fill...");
                 if (!RunBlackLiquorFill())
                 {
                     log.Error("Failed during Black Liquor Fill. Aborting...");
@@ -91,7 +92,6 @@ namespace PulpProcessAppDotNet4.Helpers
                 }
 
                 // Step 3: White Liquor Fill
-                log.Info("Running White Liquor Fill...");
                 if (!RunWhiteLiquorFill())
                 {
                     log.Error("Failed during White Liquor Fill. Aborting...");
@@ -99,7 +99,6 @@ namespace PulpProcessAppDotNet4.Helpers
                 }
 
                 // Step 4: Cooking
-                log.Info("Running Cooking...");
                 if (!RunCooking())
                 {
                     log.Error("Failed during Cooking. Aborting...");
@@ -107,14 +106,13 @@ namespace PulpProcessAppDotNet4.Helpers
                 }
 
                 // Step 5: Discharge
-                log.Info("Running Discharge...");
                 if (!RunDischarge())
                 {
                     log.Error("Failed during Discharge. Aborting...");
                     return false;
                 }
 
-                log.Info("Whole sequence runned succesfully");
+                log.Info("Whole sequence runned succesfully!");
                 return true;
             }
             catch (Exception ex)
@@ -142,7 +140,7 @@ namespace PulpProcessAppDotNet4.Helpers
                 if (!EM3_OP2()) throw new Exception("Failed to execute EM3_OP2 (Open inlet and outlet to impregnation tank T200).");
 
                 // Wait until LS+300 is activated
-                WaitForCondition(() => communicator.ProcessData.LSplus300, TimeSpan.FromSeconds(10), "LS+300 was not activated.");
+                WaitForCondition(() => communicator.ProcessData.LSplus300, TimeSpan.FromSeconds(30), "LS+300 was not activated.");
 
                 // Close outlets after condition is met
                 if (!EM3_OP1()) throw new Exception("Failed to execute EM3_OP1 (Close outlets).");
@@ -186,7 +184,7 @@ namespace PulpProcessAppDotNet4.Helpers
                 if (!EM4_OP1()) throw new Exception("Failed to execute EM4_OP1 (Open outlet for black liquor fill).");
 
                 // Wait until LI400 indicates enough liquor has been displaced
-                WaitForCondition(() => communicator.ProcessData.LI400 > 27, TimeSpan.FromSeconds(10), "LI400 did not reach the required level.");
+                WaitForCondition(() => communicator.ProcessData.LI400 > 27, TimeSpan.FromSeconds(20), "LI400 did not reach the required level.");
 
                 // Perform final operations
                 if (!EM3_OP6()) throw new Exception("Failed to execute EM3_OP6 (Close all inlets and outlets).");
@@ -218,7 +216,7 @@ namespace PulpProcessAppDotNet4.Helpers
                 if (!EM1_OP2()) throw new Exception("Failed to execute EM1_OP2 (Open route to digester/T300 and pump P100).");
 
                 // Wait until LI400 indicates that enough liquor has been displaced
-                WaitForCondition(() => communicator.ProcessData.LI400 > 27, TimeSpan.FromSeconds(10), "LI400 did not reach the required level.");
+                WaitForCondition(() => communicator.ProcessData.LI400 > 27, TimeSpan.FromSeconds(20), "LI400 did not reach the required level.");
 
                 // Perform final operations
                 if (!EM3_OP6()) throw new Exception("Failed to execute EM3_OP6 (Close all inlets and outlets).");
@@ -297,7 +295,7 @@ namespace PulpProcessAppDotNet4.Helpers
                 if (!EM3_OP5()) throw new Exception("Failed to execute EM3_OP5 (Allow digester/T300 discharge).");
 
                 // Wait until LS-300 is deactivated
-                WaitForCondition(() => !communicator.ProcessData.LSminus300, TimeSpan.FromSeconds(10), "LS-300 was not deactivated.");
+                WaitForCondition(() => !communicator.ProcessData.LSminus300, TimeSpan.FromSeconds(100), "LS-300 was not deactivated.");
 
                 // Final operations: Close routes and outlets
                 if (!EM5_OP4()) throw new Exception("Failed to execute EM5_OP4 (Close route to White Liquor Tank T100 and stop pump P200).");
