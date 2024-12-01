@@ -113,7 +113,6 @@ namespace PulpProcessAppDotNet4.Helpers
         {
             try
             {
-              
                 string currentStatus = e.StatusInfo.FullStatusString;
 
                 // Avoid duplicate status logs
@@ -149,7 +148,7 @@ namespace PulpProcessAppDotNet4.Helpers
                         log.Warn($"Unhandled process item: {item.Key}");
                     }
                 }
-                log.Info("Process items updated successfully.");
+                //log.Info("Process items updated successfully.");
             }
             catch (Exception ex)
             {

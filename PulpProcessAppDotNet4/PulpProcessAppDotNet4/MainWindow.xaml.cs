@@ -147,10 +147,10 @@ namespace PulpProcessAppDotNet4
 
                 // Initialize a helper for running the sequence
                 var sequenceHandler = new SequenceHandler(
-                    durationCooking: 300, 
-                    targetTemperature: 90.0, 
-                    targetPressure: 15.0,
-                    impregnationTime: 120, 
+                    durationCooking: 30, 
+                    targetTemperature: 30, 
+                    targetPressure: 115,
+                    impregnationTime: 30, 
                     initCommunicator: processCommunicator
                 );
 
