@@ -46,15 +46,13 @@
         <!-- TI300 Lämpötila Bar -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="450,50,0,0">
             <Rectangle Fill="Orange" Width="100" Height="20" HorizontalAlignment="Left"/>
-            <TextBlock Text="TI300 Lämpötila: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,0,0,0"/>
-            <TextBlock Text="{Binding ProcessData.TI300}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,0,0,0"/>
+            <TextBlock Text="{Binding ProcessData.TI300, StringFormat='T300 lämpötila: {0}'}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,0,0,0"/>
         </Grid>
 
-        <!-- PI300 Paine Gauge (Placeholder for Gauge Control) -->
+        <!-- PI300 Paine Gauge -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="450,100,0,0">
             <Ellipse Width="100" Height="100" Fill="Gray" HorizontalAlignment="Left"/>
-            <TextBlock Text="PI300 Paine: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,40,0,0"/>
-            <TextBlock Text="{Binding ProcessData.PI300}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="175,40,0,0"/>
+            <TextBlock Text="{Binding ProcessData.PI300, StringFormat='PI300 Paine: {0}'}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,40,0,0"/>
         </Grid>
 
         <!-- Buttons -->

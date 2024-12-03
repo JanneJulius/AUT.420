@@ -27,10 +27,10 @@ namespace PulpProcessAppDotNet4.Helpers
         public string activeSequence;
         public bool isWholeSequenceComplete = false;
         public bool hasSequenceError = false;
-        private double durationCooking;
-        private double targetTemperature;
-        private double targetPressure;
-        private double impregnationTime;
+        public double DurationCooking { get; set; }
+        public double TargetTemperature { get; set; }
+        public double TargetPressure { get; set; }
+        public double ImpregnationTime { get; set; }
 
 
         private double V104ControlValue = 100;
@@ -47,13 +47,13 @@ namespace PulpProcessAppDotNet4.Helpers
         {
             log.Info("Sequence Driver started");
 
-            // Set class variables
-            this.durationCooking = durationCooking;
-            this.targetTemperature = targetTemperature;
-            this.targetPressure = targetPressure;
-            this.impregnationTime = impregnationTime;
-            this.apiClient = initCommunicator.apiClient;
-            this.communicator = initCommunicator;
+            DurationCooking = durationCooking;
+            TargetTemperature = targetTemperature;
+            TargetPressure = targetPressure;
+            ImpregnationTime = impregnationTime;
+
+            apiClient = initCommunicator.apiClient;
+            communicator = initCommunicator;
 
             // Thread that handles sequence logic
             sequencedrivethread = new Thread(() =>
@@ -74,7 +74,11 @@ namespace PulpProcessAppDotNet4.Helpers
             {
                 log.Info("Starting whole sequence...");
 
-                
+                if (apiClient == null)
+                {
+                    log.Error("Client not found.");
+                    return false;
+                }
                 apiClient.SetOnOffItem("P100_P200_PRESET", true);
 
                 // Step 1: Impregnation
@@ -146,8 +150,8 @@ namespace PulpProcessAppDotNet4.Helpers
                 if (!EM3_OP1()) throw new Exception("Failed to execute EM3_OP1 (Close outlets).");
 
                 // Wait for the impregnation time to pass
-                log.Info($"Waiting for impregnation duration: {impregnationTime} seconds.");
-                Thread.Sleep(TimeSpan.FromSeconds(impregnationTime));
+                log.Info($"Waiting for impregnation duration: {ImpregnationTime} seconds.");
+                Thread.Sleep(TimeSpan.FromSeconds(ImpregnationTime));
 
                 // Final operations: Close outlet, stop pump, and depressurize digester
                 if (!EM2_OP2()) throw new Exception("Failed to execute EM2_OP2 (Close impregnation outlet).");
@@ -247,7 +251,7 @@ namespace PulpProcessAppDotNet4.Helpers
                 if (!EM1_OP1()) throw new Exception("Failed to execute EM1_OP1 (Open route to digester/T300, pump P100, and heat).");
 
                 // Wait until TI300 reaches the cooking temperature
-                WaitForCondition(() => communicator.ProcessData.TI300 >= targetTemperature, TimeSpan.FromSeconds(300), "TI300 did not reach the target cooking temperature.");
+                WaitForCondition(() => communicator.ProcessData.TI300 >= TargetTemperature, TimeSpan.FromSeconds(300), "TI300 did not reach the target cooking temperature.");
 
                 // Close outlets and prepare for regulated cooking
                 if (!EM3_OP1()) throw new Exception("Failed to execute EM3_OP1 (Close outlets).");
@@ -258,8 +262,8 @@ namespace PulpProcessAppDotNet4.Helpers
                 if (!U1_OP2()) throw new Exception("Failed to execute U1_OP2 (Regulate digester/T300 temperature).");
 
                 // Wait for the cooking time to pass
-                log.Info($"Waiting for cooking duration: {durationCooking} seconds.");
-                Thread.Sleep(TimeSpan.FromSeconds(durationCooking));
+                log.Info($"Waiting for cooking duration: {DurationCooking} seconds.");
+                Thread.Sleep(TimeSpan.FromSeconds(DurationCooking));
 
                 // Stop pressure and temperature regulation
                 if (!U1_OP3()) throw new Exception("Failed to execute U1_OP3 (Stop digester/T300 pressure regulation).");
@@ -794,12 +798,12 @@ namespace PulpProcessAppDotNet4.Helpers
             try
             {
                 // Calculate the new control value for V104
-                V104ControlValue -= 0.001 * (targetPressure - communicator.ProcessData.PI300);
+                V104ControlValue -= 0.001 * (TargetPressure - communicator.ProcessData.PI300);
                 V104ControlValue = Clamp(V104ControlValue, 0, 100);
 
                 // Update the valve opening and heater state
                 apiClient.SetValveOpening("V104", (int)V104ControlValue);
-                bool heaterControl = communicator.ProcessData.TI300 < targetTemperature;
+                bool heaterControl = communicator.ProcessData.TI300 < TargetTemperature;
                 apiClient.SetOnOffItem("E100", heaterControl);
 
                 log.Info("U1_OP1 executed successfully.");
@@ -821,7 +825,7 @@ namespace PulpProcessAppDotNet4.Helpers
             try
             {
                 // Check if the current temperature (TI300) is below the target temperature
-                bool heaterControl = communicator.ProcessData.TI300 < targetTemperature;
+                bool heaterControl = communicator.ProcessData.TI300 < TargetTemperature;
 
                 // Turn heater E100 on or off based on the temperature check
                 apiClient.SetOnOffItem("E100", heaterControl);
