@@ -80,6 +80,7 @@
     </Compile>
     <Compile Include="Helpers\ObservableCollectionTarget.cs" />
     <Compile Include="Helpers\ProcessCommunicator.cs" />
+    <Compile Include="Helpers\SequenceHandler.cs" />
     <Compile Include="Helpers\ProcessData.cs" />
     <Compile Include="LogViewModel\LogViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">

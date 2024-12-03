@@ -30,7 +30,7 @@ namespace PulpProcessAppDotNet4
             var observableTarget = new ObservableCollectionTarget
             {
                 LogViewModel = LogViewModel,  // Assign the ViewModel to the target
-                Layout = "${longdate} ${level} ${message}" // Define the layout
+                Layout = "${longdate} ${level} ${message}", // Define the layout
             };
 
             // Add the target to the configuration
