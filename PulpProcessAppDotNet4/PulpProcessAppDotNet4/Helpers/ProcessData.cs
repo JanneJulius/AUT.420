@@ -4,7 +4,7 @@ using PulpProcessAppDotNet4.Helpers;
 namespace PulpProcessAppDotNet4.Helpers
 {
     /// <summary>
-    /// Creates event handlers for the UI interface to use. Requires DataContext like logging so WIP.
+    /// Creates event handlers for the UI interface to use.
     /// </summary>
     public class ProcessData : INotifyPropertyChanged
     {

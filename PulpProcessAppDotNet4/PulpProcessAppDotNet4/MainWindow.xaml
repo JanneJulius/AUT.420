@@ -13,7 +13,7 @@
             <ProgressBar x:Name="ProgressBarLI100" Width="100" Height="150" Value="50" Orientation="Vertical" HorizontalAlignment="Center"/>
 
             <!-- LI100 Label -->
-            <TextBlock Text="{Binding LI100}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
+            <TextBlock Text="{Binding ProcessData.LI100}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
 
             <!-- LI100 Height -->
             <TextBlock Text="LI100 korkeus" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,180,0,0"/>
@@ -25,7 +25,7 @@
             <ProgressBar x:Name="ProgressBarLI200" Width="100" Height="150" Value="30" Orientation="Vertical" HorizontalAlignment="Center"/>
 
             <!-- LI200 Label -->
-            <TextBlock Text="{Binding LI200}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
+            <TextBlock Text="{Binding ProcessData.LI200}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
 
             <!-- LI200 Height -->
             <TextBlock Text="LI200 korkeus" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,180,0,0"/>
@@ -37,7 +37,7 @@
             <ProgressBar x:Name="ProgressBarLI400" Width="100" Height="150" Value="20" Orientation="Vertical" HorizontalAlignment="Center"/>
 
             <!-- LI400 Label -->
-            <TextBlock Text="{Binding LI400}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
+            <TextBlock Text="{Binding ProcessData.LI400}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
 
             <!-- LI400 Height -->
             <TextBlock Text="LI400 korkeus" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,180,0,0"/>
@@ -47,14 +47,14 @@
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="450,50,0,0">
             <Rectangle Fill="Orange" Width="100" Height="20" HorizontalAlignment="Left"/>
             <TextBlock Text="TI300 Lämpötila: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,0,0,0"/>
-            <TextBlock Text="{Binding TI300}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,0,0,0"/>
+            <TextBlock Text="{Binding ProcessData.TI300}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="200,0,0,0"/>
         </Grid>
 
         <!-- PI300 Paine Gauge (Placeholder for Gauge Control) -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="450,100,0,0">
             <Ellipse Width="100" Height="100" Fill="Gray" HorizontalAlignment="Left"/>
             <TextBlock Text="PI300 Paine: " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,40,0,0"/>
-            <TextBlock Text="{Binding PI300}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="140,40,0,0"/>
+            <TextBlock Text="{Binding ProcessData.PI300}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="175,40,0,0"/>
         </Grid>
 
         <!-- Buttons -->
@@ -73,7 +73,7 @@
         </Grid>
 
         <Grid>
-            <ListBox ItemsSource="{Binding Logs}" Margin="616,217,52,15" />
+            <ListBox ItemsSource="{Binding LogViewModel.Logs}" Margin="616,217,52,15" />
 
         </Grid>
 

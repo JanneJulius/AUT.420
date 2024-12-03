@@ -9,26 +9,10 @@ using System.Windows;
 
 namespace PulpProcessAppDotNet4.Helpers
 {
-
-    /// <summary>
-    /// Represents a collection of key process metrics.
-    /// </summary>
-    public class ProcessData
-    {
-        public int LI100 { get; set; }
-        public int LI200 { get; set; }
-        public int PI300 { get; set; }
-        public double TI300 { get; set; }
-        public int LI400 { get; set; }
-        public bool LSplus300 { get; set; }
-        public bool LSminus300 { get; set; }
-    }
-
-
     /// <summary>
     /// Manages the connection with the external process API.
     /// </summary>
-    class ProcessCommunicator
+    public class ProcessCommunicator
     {
         private const string API_ENDPOINT = "opc.tcp://127.0.0.1:8087";
         private const bool IS_CONNECTED = true;
@@ -46,7 +30,6 @@ namespace PulpProcessAppDotNet4.Helpers
 
         public ProcessCommunicator()
         {
-            var ProcessData= new ProcessData();
             connectionConfig = new ConnectionParamsHolder(API_ENDPOINT);
 
             // Define mappings between item keys and actions

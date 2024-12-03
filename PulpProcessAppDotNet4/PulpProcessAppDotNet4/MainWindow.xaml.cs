@@ -31,6 +31,7 @@ namespace PulpProcessAppDotNet4
     public partial class MainWindow : Window
     {
         private ProcessCommunicator processCommunicator;
+        private LogViewModel logViewModel;
         private ProcessState currentState;
 
         public MainWindow()
@@ -40,11 +41,11 @@ namespace PulpProcessAppDotNet4
 
             // Access the shared ViewModel
             var app = (App)Application.Current;
-            //DataContext = app.LogViewModel; // Set the DataContext to the shared ViewModel
 
             // Initialize the ProcessCommunicator
             processCommunicator = new ProcessCommunicator();
-            //DataContext = processCommunicator.ProcessData;  // Bind UI to ProcessData
+            logViewModel = ((App)Application.Current).LogViewModel;
+            DataContext = new MainViewModel(processCommunicator, logViewModel);  // Bind UI to ProcessData and logs.
 
             InitializeState();
         }
@@ -114,13 +115,11 @@ namespace PulpProcessAppDotNet4
                 if (processCommunicator.IsConnected)
                 {
                     bool success = await Task.Run(() => processCommunicator.DisconnectAsync());
-
                 }
                 else
                 {
                     // Run the synchronous Reconnect on a background thread
                     bool success = await Task.Run(() => processCommunicator.ReconnectAsync());
-                  
                 }
 
                 // Update the button's content based on the new state
