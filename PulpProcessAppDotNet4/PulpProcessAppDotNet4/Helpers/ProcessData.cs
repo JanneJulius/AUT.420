@@ -4,7 +4,7 @@ using PulpProcessAppDotNet4.Helpers;
 namespace PulpProcessAppDotNet4.Helpers
 {
     /// <summary>
-    /// Represents the collection of key process metric events.
+    /// Creates event handlers for the UI interface to use.
     /// </summary>
     public class ProcessData : INotifyPropertyChanged
     {

@@ -18,20 +18,22 @@ using System.Windows.Threading;
 
 namespace PulpProcessAppDotNet4
 {
+
+    public enum ProcessState
+    {
+        Initialized,
+        Running,
+        Halted
+    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    /// 
-    public enum ProcessState
-    {
-        Alkutila,
-        Kaynnissa,
-        Keskeytetty
-    }
     public partial class MainWindow : Window
     {
         private ProcessCommunicator processCommunicator;
+        private LogViewModel logViewModel;
         private ProcessState currentState;
+        private readonly SequenceHandler sequenceHandler;
 
         public MainWindow()
         {
@@ -40,17 +42,20 @@ namespace PulpProcessAppDotNet4
 
             // Access the shared ViewModel
             var app = (App)Application.Current;
-            DataContext = app.LogViewModel; // Set the DataContext to the shared ViewModel
 
             // Initialize the ProcessCommunicator
             processCommunicator = new ProcessCommunicator();
-            //DataContext = processCommunicator.ProcessData;  // Bind UI to ProcessData
+            logViewModel = ((App)Application.Current).LogViewModel;
+            DataContext = new MainViewModel(processCommunicator, logViewModel);  // Bind UI to ProcessData and logs.
+
+            // Initialize the SequenceHandler with default values
+            sequenceHandler = new SequenceHandler(0, 0, 0, 0, processCommunicator);
 
             InitializeState();
         }
         private void InitializeState()
         {
-            currentState = ProcessState.Alkutila;
+            currentState = ProcessState.Initialized;
             UpdateUI();
         }
         private void UpdateUI()
@@ -60,49 +65,64 @@ namespace PulpProcessAppDotNet4
 
             switch (currentState)
             {
-                case ProcessState.Alkutila:
+                case ProcessState.Initialized:
                     StartPauseButton.Content = "Käynnistä";
                     StatusTextBlock.Text = "alkutila";
                     break;
-                case ProcessState.Kaynnissa:
+                case ProcessState.Running:
                     StartPauseButton.Content = "Keskeytä";
                     StatusTextBlock.Text = "käynnissä";
                     break;
-                case ProcessState.Keskeytetty:
+                case ProcessState.Halted:
                     StartPauseButton.Content = "Käynnistä";
                     StatusTextBlock.Text = "keskeytetty";
                     break;
             }
         }
-        // Button click event to open ParameterWindow, now a state manager too.
+        // Button click event to open ParameterWindow, now a state manager too. TODO: Refactor.
         private void OnStart(object sender, RoutedEventArgs e)
         {
-            if (currentState == ProcessState.Alkutila)
+            if (currentState == ProcessState.Initialized)
             {
-                ParameterWindow parameterWindow = new ParameterWindow();
-                parameterWindow.ShowDialog(); // Use ShowDialog to wait for the window to close
+                ParameterWindow parameterWindow = new ParameterWindow(processCommunicator);
+                if (parameterWindow.ShowDialog() == true)
+                {
+                    var parameters = parameterWindow.ParameterData;
 
-                // After ParameterWindow is closed, update to "käynnissä"
-                currentState = ProcessState.Kaynnissa;
-                UpdateUI();
+                    // Update the SequenceHandler with the parameters
+                    sequenceHandler.DurationCooking = parameters.DurationCooking;
+                    sequenceHandler.TargetTemperature = parameters.TargetTemperature;
+                    sequenceHandler.TargetPressure = parameters.TargetPressure;
+                    sequenceHandler.ImpregnationTime = parameters.ImpregnationTime;
+
+                    // Run the sequence in a background thread to avoid UI blocking
+                    Task.Run(() =>
+                    {
+                        bool success = sequenceHandler.RunWholeSequence();
+                    });
+
+                    // After ParameterWindow is closed, update to "käynnissä"
+                    currentState = ProcessState.Running;
+                    UpdateUI();
+                }
             }
-            else if (currentState == ProcessState.Kaynnissa)
+            else if (currentState == ProcessState.Running)
             {
                 // Current implementation works as play/pause button, change if needed
-                currentState = ProcessState.Keskeytetty;
+                currentState = ProcessState.Halted;
                 UpdateUI();
             }
-            else if (currentState == ProcessState.Keskeytetty)
+            else if (currentState == ProcessState.Halted)
             {
                 // "pause"
-                currentState = ProcessState.Kaynnissa;
+                currentState = ProcessState.Running;
                 UpdateUI();
             }
         }
         private void OnReset(object sender, RoutedEventArgs e)
         {
             // Return to alkutila.
-            currentState = ProcessState.Alkutila;
+            currentState = ProcessState.Initialized;
             UpdateUI();
         }
 
@@ -114,13 +134,11 @@ namespace PulpProcessAppDotNet4
                 if (processCommunicator.IsConnected)
                 {
                     bool success = await Task.Run(() => processCommunicator.DisconnectAsync());
-
                 }
                 else
                 {
                     // Run the synchronous Reconnect on a background thread
                     bool success = await Task.Run(() => processCommunicator.ReconnectAsync());
-                  
                 }
 
                 // Update the button's content based on the new state
