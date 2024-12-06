@@ -82,6 +82,7 @@
     <Compile Include="Helpers\ParameterData.cs" />
     <Compile Include="Helpers\ProcessCommunicator.cs" />
     <Compile Include="Helpers\ProcessStateHandler.cs" />
+    <Compile Include="Helpers\ProgressToHeightConverter.cs" />
     <Compile Include="Helpers\SequenceHandler.cs" />
     <Compile Include="Helpers\ProcessData.cs" />
     <Compile Include="ViewModels\LogViewModel.cs" />

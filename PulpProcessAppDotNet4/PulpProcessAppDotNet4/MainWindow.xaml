@@ -3,6 +3,26 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:helpers="clr-namespace:PulpProcessAppDotNet4.Helpers"
         Title="Säiliöiden tila" Height="450" Width="800">
+    <Window.Resources>
+        <!-- Converter for Scaling Progress Values -->
+        <helpers:ProgressToHeightConverter x:Key="ProgressToHeightConverter" />
+        <!-- Dynamic ProgressBar Style -->
+        <Style x:Key="VerticalProgressBarStyle" TargetType="ProgressBar">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ProgressBar">
+                        <Grid>
+                            <Rectangle Fill="LightGray" Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" />
+                            <Rectangle Fill="SteelBlue"
+                                       Width="{TemplateBinding Width}"
+                                       VerticalAlignment="Bottom"
+                                       Height="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Value, Converter={StaticResource ProgressToHeightConverter}}" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
     <Grid>
         <!-- Title -->
         <TextBlock Text="Säiliöiden tila" FontSize="20" FontWeight="Bold" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Top"/>
@@ -10,7 +30,13 @@
         <!-- LI100 Section -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,50,0,0">
             <!-- Progress Bar -->
-            <ProgressBar x:Name="ProgressBarLI100" Width="100" Height="150" Value="50" Orientation="Vertical" HorizontalAlignment="Center"/>
+            <ProgressBar x:Name="ProgressBarLI100"
+                             Width="100" Height="150"
+                             Value="{Binding ProcessData.LI100}"
+                             Maximum="300"
+                             Orientation="Vertical"
+                             HorizontalAlignment="Center"
+                             Style="{StaticResource VerticalProgressBarStyle}" />
 
             <!-- LI100 Label -->
             <TextBlock Text="{Binding ProcessData.LI100}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
@@ -22,7 +48,13 @@
         <!-- LI200 Section -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="150,50,0,0">
             <!-- Progress Bar -->
-            <ProgressBar x:Name="ProgressBarLI200" Width="100" Height="150" Value="30" Orientation="Vertical" HorizontalAlignment="Center"/>
+            <ProgressBar x:Name="ProgressBarLI200"
+                             Width="100" Height="150"
+                             Value="{Binding ProcessData.LI200}"
+                             Maximum="300"
+                             Orientation="Vertical"
+                             Style="{StaticResource VerticalProgressBarStyle}"/>
+            
 
             <!-- LI200 Label -->
             <TextBlock Text="{Binding ProcessData.LI200}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>
@@ -34,7 +66,12 @@
         <!-- LI400 Section -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="290,50,0,0">
             <!-- Progress Bar -->
-            <ProgressBar x:Name="ProgressBarLI400" Width="100" Height="150" Value="20" Orientation="Vertical" HorizontalAlignment="Center"/>
+            <ProgressBar x:Name="ProgressBarLI400"
+                             Width="100" Height="150"
+                             Value="{Binding ProcessData.LI400}"
+                             Maximum="300"
+                             Orientation="Vertical"
+                             Style="{StaticResource VerticalProgressBarStyle}" />
 
             <!-- LI400 Label -->
             <TextBlock Text="{Binding ProcessData.LI400}" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,155,0,0"/>

@@ -116,9 +116,13 @@ namespace PulpProcessAppDotNet4
                             // Log error and return to Halted
                             Dispatcher.Invoke(() =>
                             {
-                            processStateHandler.CurrentState = ProcessState.Halted;
-                            UpdateUI();
+                                processStateHandler.CurrentState = ProcessState.Halted;
+                                UpdateUI();
                             });
+                        }
+                        else
+                        {
+                            processStateHandler.CurrentState = ProcessState.Initialized;
                         }
                     });
                     break;
