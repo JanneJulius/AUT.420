@@ -60,7 +60,6 @@
             <Button x:Name="StartPauseButton" Width="150" Height="50" Margin="-112.5,0,20,0" Click="OnStart"/>
             <Button Content="Palauta" Width="150" Height="50" Margin="170,0,0,0" Click="OnReset"/>
             <Button Name="ConnectionButton" Content="Reconnect" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,85,0,0"  Width="150" Height="25" Click="ConnectionButton_Click" />
-            <Button x:Name="RunSequenceButton" Content="Run Whole Sequence" Click="RunSequenceButton_Click" Margin="198,85,25,-1" />
         </Grid>
 
         <!-- Status and Connection -->

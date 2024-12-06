@@ -19,12 +19,6 @@ using System.Windows.Threading;
 namespace PulpProcessAppDotNet4
 {
 
-    public enum ProcessState
-    {
-        Initialized,
-        Running,
-        Halted
-    }
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -32,8 +26,9 @@ namespace PulpProcessAppDotNet4
     {
         private ProcessCommunicator processCommunicator;
         private LogViewModel logViewModel;
-        private ProcessState currentState;
+
         private readonly SequenceHandler sequenceHandler;
+        private ProcessStateHandler processStateHandler;
 
         public MainWindow()
         {
@@ -52,14 +47,13 @@ namespace PulpProcessAppDotNet4
             logViewModel = App.LogViewModel;
             DataContext = new MainViewModel(processCommunicator, logViewModel);  // Bind UI to ProcessData and logs.
 
-            // Initialize the SequenceHandler with default values
+            // Initialize the SequenceHandler
             sequenceHandler = App.SequenceHandler;
 
-            InitializeState();
-        }
-        private void InitializeState()
-        {
-            currentState = ProcessState.Initialized;
+            // Initialize the state handler and subscribe to its events
+            processStateHandler = new ProcessStateHandler();
+            processStateHandler.StateChanged += OnProcessStateChanged;
+
             UpdateUI();
         }
         private void UpdateUI()
@@ -67,7 +61,7 @@ namespace PulpProcessAppDotNet4
             // Update the connection status display
             ConnectionStatusTextBlock.Text = processCommunicator.IsConnected ? "Yhteys: online" : "Yhteys: offline";
 
-            switch (currentState)
+            switch (processStateHandler.CurrentState)
             {
                 case ProcessState.Initialized:
                     StartPauseButton.Content = "Käynnistä";
@@ -86,7 +80,7 @@ namespace PulpProcessAppDotNet4
         // Button click event to open ParameterWindow, now a state manager too.
         private void OnStart(object sender, RoutedEventArgs e)
         {
-            if (currentState == ProcessState.Initialized)
+            if (processStateHandler.CurrentState == ProcessState.Initialized)
             {
                 ParameterWindow parameterWindow = new ParameterWindow(processCommunicator);
                 if (parameterWindow.ShowDialog() == true)
@@ -99,35 +93,51 @@ namespace PulpProcessAppDotNet4
                     sequenceHandler.TargetPressure = parameters.TargetPressure;
                     sequenceHandler.ImpregnationTime = parameters.ImpregnationTime;
 
+                    // Change the state to Running (triggers OnProcessStateChanged)
+                    processStateHandler.CurrentState = ProcessState.Running;
+                }
+            }
+        }
+        private void OnProcessStateChanged(object sender, ProcessState newState)
+        {
+            switch (newState)
+            {
+                case ProcessState.Initialized:
+                    // Handle Initialized state if necessary
+                    break;
+
+                case ProcessState.Running:
                     // Run the sequence in a background thread to avoid UI blocking
-                    // bool success = await Task.Run(() => sequenceHandler.RunWholeSequence());
                     Task.Run(() =>
                     {
                         bool success = sequenceHandler.RunWholeSequence();
+                        if (!success)
+                        {
+                            // Log error and return to Halted
+                            Dispatcher.Invoke(() =>
+                            {
+                            processStateHandler.CurrentState = ProcessState.Halted;
+                            UpdateUI();
+                            });
+                        }
                     });
+                    break;
 
-                    // After ParameterWindow is closed, update to "käynnissä"
-                    currentState = ProcessState.Running;
-                    UpdateUI();
-                }
+                case ProcessState.Halted:
+                    // Optionally handle any additional cleanup or notifications for pause
+                    break;
             }
-            else if (currentState == ProcessState.Running)
-            {
-                // Current implementation works as play/pause button, change if needed
-                currentState = ProcessState.Halted;
-                UpdateUI();
-            }
-            else if (currentState == ProcessState.Halted)
-            {
-                // "pause"
-                currentState = ProcessState.Running;
-                UpdateUI();
-            }
+
+            // Update the UI to reflect the new state
+            Dispatcher.Invoke(UpdateUI);
         }
+
+
         private void OnReset(object sender, RoutedEventArgs e)
         {
-            // Return to alkutila.
-            currentState = ProcessState.Initialized;
+            // Reset the process state to "Initialized"
+            processStateHandler.CurrentState = ProcessState.Initialized;
+
             UpdateUI();
         }
 
@@ -158,37 +168,6 @@ namespace PulpProcessAppDotNet4
                 ConnectionButton.IsEnabled = true; // Re-enable button
             }
         }
-
-        /// <summary>
-        /// Handles the button click event to run the whole sequence.
-        /// </summary>
-        private async void RunSequenceButton_Click(object sender, RoutedEventArgs e)
-        {
-            RunSequenceButton.IsEnabled = false; // Disable the button to prevent multiple clicks
-            try
-            {
-
-                // Initialize a helper for running the sequence
-                var sequenceHandler = new SequenceHandler(
-                    durationCooking: 30, 
-                    targetTemperature: 30, 
-                    targetPressure: 115,
-                    impregnationTime: 30
-                );
-
-                bool success = await Task.Run(() => sequenceHandler.RunWholeSequence());
-
-            }
-            catch (Exception ex)
-            {
-
-            }
-            finally
-            {
-                RunSequenceButton.IsEnabled = true; // Re-enable the button
-            }
-        }
-
 
         private void UpdateButtonState()
         {

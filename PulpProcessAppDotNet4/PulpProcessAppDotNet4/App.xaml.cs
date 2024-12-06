@@ -35,43 +35,31 @@ namespace PulpProcessAppDotNet4
             ConfigureLogging();
             logger.Info("logging configured");
 
-            //try
-            //{
-            //    // Run ProcessCommunicator initialization asynchronously
-            //    bool success = await Task.Run(() =>
-            //    {
-            //        ProcessCommunicator = new ProcessCommunicator();
-            //        return ProcessCommunicator.Initialize(); // Assuming it returns a bool or success state
-            //    });
+            try
+            {
+                // Run ProcessCommunicator initialization asynchronously
+                bool success = await Task.Run(() =>
+                {
+                    ProcessCommunicator = new ProcessCommunicator();
+                    return ProcessCommunicator.Initialize();
+                });
 
-            //    if (!success)
-            //    {
-            //        logger.Error("Failed to initialize ProcessCommunicator.");
-            //        MessageBox.Show("Failed to initialize communication with the process.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            //    }
-            //    else
-            //    {
-            //        logger.Info("ProcessCommunicator initialized successfully.");
-            //    }
-            //}
-            //catch (Exception ex)
-            //{
-            //    logger.Error(ex, "Error during ProcessCommunicator initialization.");
-            //    MessageBox.Show("An error occurred during initialization.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            //}
+                if (!success)
+                {
+                    logger.Error("Failed to initialize ProcessCommunicator.");
+                    MessageBox.Show("Failed to initialize communication with the process.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    logger.Info("ProcessCommunicator initialized successfully.");
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Error during ProcessCommunicator initialization.");
+                MessageBox.Show("An error occurred during initialization.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
 
-            // Initialize the ProcessCommunicator and ensure it connects
-            ProcessCommunicator = new ProcessCommunicator();
-            ProcessCommunicator.Initialize();
-            logger.Info("communicator initialized");
-            //if (!ProcessCommunicator.Initialize())
-            //{
-            //    logger.Error("Failed to initialize the ProcessCommunicator.");
-            //}
-            //else
-            //{
-            //    logger.Info("ProcessCommunicator initialized successfully.");
-            //}
             // Initialize the SequenceHandler with default values
             SequenceHandler = new SequenceHandler(0, 0, 0, 0);
 
@@ -88,6 +76,10 @@ namespace PulpProcessAppDotNet4
                 logger.Error(ev.Exception, "Unhandled UI exception occurred.");
                 ev.Handled = true;  // Prevents the application from crashing
             };
+
+            // Create and show the main window
+            var mainWindow = new MainWindow(); // Replace with your MainWindow class
+            mainWindow.Show();
         }
 
         private void ConfigureLogging()
