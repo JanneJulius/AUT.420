@@ -38,18 +38,22 @@ namespace PulpProcessAppDotNet4
         public MainWindow()
         {
             InitializeComponent();
-
-
+           
             // Access the shared ViewModel
             var app = (App)Application.Current;
 
-            // Initialize the ProcessCommunicator
-            processCommunicator = new ProcessCommunicator();
-            logViewModel = ((App)Application.Current).LogViewModel;
+            // Initialize ProcessCommunicator and ensure it's connected
+            processCommunicator = App.ProcessCommunicator;
+            if (!processCommunicator.IsConnected)
+            {
+                processCommunicator.Initialize();
+            }
+
+            logViewModel = App.LogViewModel;
             DataContext = new MainViewModel(processCommunicator, logViewModel);  // Bind UI to ProcessData and logs.
 
             // Initialize the SequenceHandler with default values
-            sequenceHandler = new SequenceHandler(0, 0, 0, 0, processCommunicator);
+            sequenceHandler = App.SequenceHandler;
 
             InitializeState();
         }
@@ -79,7 +83,7 @@ namespace PulpProcessAppDotNet4
                     break;
             }
         }
-        // Button click event to open ParameterWindow, now a state manager too. TODO: Refactor.
+        // Button click event to open ParameterWindow, now a state manager too.
         private void OnStart(object sender, RoutedEventArgs e)
         {
             if (currentState == ProcessState.Initialized)
@@ -96,6 +100,7 @@ namespace PulpProcessAppDotNet4
                     sequenceHandler.ImpregnationTime = parameters.ImpregnationTime;
 
                     // Run the sequence in a background thread to avoid UI blocking
+                    // bool success = await Task.Run(() => sequenceHandler.RunWholeSequence());
                     Task.Run(() =>
                     {
                         bool success = sequenceHandler.RunWholeSequence();
@@ -168,8 +173,7 @@ namespace PulpProcessAppDotNet4
                     durationCooking: 30, 
                     targetTemperature: 30, 
                     targetPressure: 115,
-                    impregnationTime: 30, 
-                    initCommunicator: processCommunicator
+                    impregnationTime: 30
                 );
 
                 bool success = await Task.Run(() => sequenceHandler.RunWholeSequence());

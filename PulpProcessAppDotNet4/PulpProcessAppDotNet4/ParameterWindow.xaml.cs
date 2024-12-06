@@ -25,13 +25,11 @@ namespace PulpProcessAppDotNet4
         {
             InitializeComponent();
             DataContext = processCommunicator.ProcessData;
-
         }
 
         // Event handler for the "Aseta" button
         private void OnSetParameters(object sender, RoutedEventArgs e)
         {
-            
             try
             {
                 // Collect user input and store it in ParameterData
