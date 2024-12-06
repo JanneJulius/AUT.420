@@ -81,10 +81,11 @@
     <Compile Include="Helpers\ObservableCollectionTarget.cs" />
     <Compile Include="Helpers\ParameterData.cs" />
     <Compile Include="Helpers\ProcessCommunicator.cs" />
+    <Compile Include="Helpers\ProcessStateHandler.cs" />
     <Compile Include="Helpers\SequenceHandler.cs" />
     <Compile Include="Helpers\ProcessData.cs" />
-    <Compile Include="LogViewModel\LogViewModel.cs" />
-    <Compile Include="LogViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModels\LogViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

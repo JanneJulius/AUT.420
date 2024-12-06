@@ -13,7 +13,7 @@ namespace PulpProcessAppDotNet4.Helpers
     /// <summary>
     /// Class to handling the sequences.
     /// </summary>
-    class SequenceHandler
+    public class SequenceHandler
     {
 
         // Main sequence names
@@ -37,13 +37,13 @@ namespace PulpProcessAppDotNet4.Helpers
 
         private static Logger log = App.logger;
         private MppClient apiClient;
-        private ProcessCommunicator communicator;
+        private ProcessCommunicator communicator = App.ProcessCommunicator;
 
         private Thread sequencedrivethread;
 
 
 
-        public SequenceHandler(double durationCooking, double targetTemperature, double targetPressure, double impregnationTime, ProcessCommunicator initCommunicator)
+        public SequenceHandler(double durationCooking, double targetTemperature, double targetPressure, double impregnationTime)
         {
             log.Info("Sequence Driver started");
 
@@ -52,8 +52,7 @@ namespace PulpProcessAppDotNet4.Helpers
             TargetPressure = targetPressure;
             ImpregnationTime = impregnationTime;
 
-            apiClient = initCommunicator.apiClient;
-            communicator = initCommunicator;
+            apiClient = communicator.apiClient;
 
             // Thread that handles sequence logic
             sequencedrivethread = new Thread(() =>
@@ -76,8 +75,15 @@ namespace PulpProcessAppDotNet4.Helpers
 
                 if (apiClient == null)
                 {
-                    log.Error("Client not found.");
-                    return false;
+                    log.Error("Client not found, reinitializing...");
+                    communicator.Initialize();
+                    apiClient = communicator.apiClient;
+
+                    if (apiClient == null)  // Check again
+                    {
+                        log.Error("Failed to reconnect the client.");
+                        return false;
+                    }
                 }
                 apiClient.SetOnOffItem("P100_P200_PRESET", true);
 
