@@ -63,7 +63,7 @@ namespace PulpProcessAppDotNet4
                 if (!success)
                 {
                     logger.Error("Failed to initialize ProcessCommunicator.");
-                    MessageBox.Show("Failed to initialize communication with the process.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show("Kommunikoinnin alustaminen järjestelmän kanssa epäonnistui. Kokeile yhdistää uudestaan ja tarkista että palvelin on päällä. Tarvittaessa tarkista instrumentointi.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 else
                 {
