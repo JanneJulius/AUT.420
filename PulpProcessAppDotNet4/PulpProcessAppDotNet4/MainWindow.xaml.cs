@@ -18,23 +18,30 @@ using System.Windows.Threading;
 
 namespace PulpProcessAppDotNet4
 {
-
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Represents the main application window that integrates process management and UI updates.
     /// </summary>
+    /// <remarks>
+    /// This class handles user interaction, updates UI elements, and manages process states via <see cref="ProcessCommunicator"/>, 
+    /// <see cref="LogViewModel"/>, <see cref="SequenceHandler"/>, and <see cref="ProcessStateHandler"/>.
+    /// </remarks>
     public partial class MainWindow : Window
     {
-        private ProcessCommunicator processCommunicator;
-        private LogViewModel logViewModel;
-
+        private readonly ProcessCommunicator processCommunicator;
+        private readonly LogViewModel logViewModel;
         private readonly SequenceHandler sequenceHandler;
-        private ProcessStateHandler processStateHandler;
+        private readonly ProcessStateHandler processStateHandler;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainWindow"/> class.
+        /// </summary>
+        /// <remarks>
+        /// Sets up data contexts, initializes communication, and subscribes to process state changes.
+        /// </remarks>
         public MainWindow()
         {
             InitializeComponent();
-           
-            // Access the shared ViewModel
+
             var app = (App)Application.Current;
 
             // Initialize ProcessCommunicator and ensure it's connected
@@ -45,20 +52,21 @@ namespace PulpProcessAppDotNet4
             }
 
             logViewModel = App.LogViewModel;
-            DataContext = new MainViewModel(processCommunicator, logViewModel);  // Bind UI to ProcessData and logs.
+            DataContext = new MainViewModel(processCommunicator, logViewModel);
 
-            // Initialize the SequenceHandler
+            // Initialize the SequenceHandler and ProcessStateHandler
             sequenceHandler = App.SequenceHandler;
-
-            // Initialize the state handler and subscribe to its events
             processStateHandler = new ProcessStateHandler();
             processStateHandler.StateChanged += OnProcessStateChanged;
 
             UpdateUI();
         }
+
+        /// <summary>
+        /// Updates the UI elements to reflect the current connection and process states.
+        /// </summary>
         private void UpdateUI()
         {
-            // Update the connection status display
             ConnectionStatusTextBlock.Text = processCommunicator.IsConnected ? "Yhteys: online" : "Yhteys: offline";
 
             switch (processStateHandler.CurrentState)
@@ -77,7 +85,10 @@ namespace PulpProcessAppDotNet4
                     break;
             }
         }
-        // Button click event to open ParameterWindow, now a state manager too.
+
+        /// <summary>
+        /// Handles the Start button click event to open the parameter window and update the sequence parameters.
+        /// </summary>
         private void OnStart(object sender, RoutedEventArgs e)
         {
             if (processStateHandler.CurrentState == ProcessState.Initialized)
@@ -87,104 +98,100 @@ namespace PulpProcessAppDotNet4
                 {
                     var parameters = parameterWindow.ParameterData;
 
-                    // Update the SequenceHandler with the parameters
+                    // Update the SequenceHandler with parameters
                     sequenceHandler.DurationCooking = parameters.DurationCooking;
                     sequenceHandler.TargetTemperature = parameters.TargetTemperature;
                     sequenceHandler.TargetPressure = parameters.TargetPressure;
                     sequenceHandler.ImpregnationTime = parameters.ImpregnationTime;
 
-                    // Change the state to Running (triggers OnProcessStateChanged)
+                    // Change the state to Running
                     processStateHandler.CurrentState = ProcessState.Running;
                 }
             }
         }
+
+        /// <summary>
+        /// Handles changes in the process state and updates the UI accordingly.
+        /// </summary>
         private void OnProcessStateChanged(object sender, ProcessState newState)
         {
             switch (newState)
             {
                 case ProcessState.Initialized:
-                    // Handle Initialized state if necessary
                     break;
 
                 case ProcessState.Running:
-                    // Run the sequence in a background thread to avoid UI blocking
                     Task.Run(() =>
                     {
                         bool success = sequenceHandler.RunWholeSequence();
                         if (!success)
                         {
-                            // Log error and return to Halted
                             Dispatcher.Invoke(() =>
                             {
-                            processStateHandler.CurrentState = ProcessState.Halted;
-                            UpdateUI();
+                                processStateHandler.CurrentState = ProcessState.Halted;
+                                UpdateUI();
                             });
                         }
                     });
                     break;
 
                 case ProcessState.Halted:
-                    // Optionally handle any additional cleanup or notifications for pause
                     break;
             }
 
-            // Update the UI to reflect the new state
             Dispatcher.Invoke(UpdateUI);
         }
 
-
+        /// <summary>
+        /// Handles the Reset button click event to reset the process state to Initialized.
+        /// </summary>
         private void OnReset(object sender, RoutedEventArgs e)
         {
-            // Reset the process state to "Initialized"
             processStateHandler.CurrentState = ProcessState.Initialized;
-
             UpdateUI();
         }
 
+        /// <summary>
+        /// Handles the Connection button click event to toggle connection state (connect or disconnect).
+        /// </summary>
         private async void ConnectionButton_Click(object sender, RoutedEventArgs e)
         {
-            ConnectionButton.IsEnabled = false; // Disable button during operation
+            ConnectionButton.IsEnabled = false;
             try
             {
                 if (processCommunicator.IsConnected)
                 {
-                    bool success = await Task.Run(() => processCommunicator.DisconnectAsync());
+                    await Task.Run(() => processCommunicator.DisconnectAsync());
                 }
                 else
                 {
-                    // Run the synchronous Reconnect on a background thread
-                    bool success = await Task.Run(() => processCommunicator.ReconnectAsync());
+                    await Task.Run(() => processCommunicator.ReconnectAsync());
                 }
 
-                // Update the button's content based on the new state
                 UpdateButtonState();
                 UpdateUI();
             }
-            catch (Exception ex)
-            {
-            }
             finally
             {
-                ConnectionButton.IsEnabled = true; // Re-enable button
+                ConnectionButton.IsEnabled = true;
             }
         }
 
+        /// <summary>
+        /// Updates the Connection button content based on the current connection state.
+        /// </summary>
         private void UpdateButtonState()
         {
-            if (processCommunicator.IsConnected)
-            {
-                ConnectionButton.Content = "Disconnect";
-            }
-            else
-            {
-                ConnectionButton.Content = "Reconnect";
-            }
+            ConnectionButton.Content = processCommunicator.IsConnected ? "Disconnect" : "Reconnect";
         }
 
+        /// <summary>
+        /// Ensures the process communicator disconnects when the window is closed.
+        /// </summary>
         protected override async void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
-            bool success = await Task.Run(() => processCommunicator.DisconnectAsync());
+            await Task.Run(() => processCommunicator.DisconnectAsync());
         }
     }
 }
