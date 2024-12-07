@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['halted_0',['Halted',['../namespace_pulp_process_app_dot_net4_1_1_helpers.html#af7ba3055679ed58bccb12c8d41c81d53a5f0dc0c7e4e48e1ea3e8b451ecb2b782',1,'PulpProcessAppDotNet4::Helpers']]],
-  ['hassequenceerror_1',['hasSequenceError',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_sequence_handler.html#ad6972436bb28166bd5d871657f8f60d0',1,'PulpProcessAppDotNet4::Helpers::SequenceHandler']]],
-  ['how_20to_20install_2',['How to install',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html#autotoc_md40',1,'']]],
-  ['how_20to_20uninstall_3',['How to uninstall',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html#autotoc_md41',1,'']]]
+  ['sequencehandler_0',['SequenceHandler',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_sequence_handler.html',1,'PulpProcessAppDotNet4.Helpers.SequenceHandler'],['../class_pulp_process_app_dot_net4_1_1_app.html#a2d55975d6a3785b0e79924124653c3fd',1,'PulpProcessAppDotNet4.App.SequenceHandler'],['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_sequence_handler.html#a2935f1f4fbc7922783842f096c5c9f3f',1,'PulpProcessAppDotNet4.Helpers.SequenceHandler.SequenceHandler()']]],
+  ['sequencehandler_2ecs_1',['SequenceHandler.cs',['../_sequence_handler_8cs.html',1,'']]],
+  ['setpropertyvalue_2',['SetPropertyValue',['../class_xaml_generated_namespace_1_1_generated_internal_type_helper.html#ade0f04c0f7b18dd5b170e071d5534d38',1,'XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo propertyInfo, object target, object value, System.Globalization.CultureInfo culture)'],['../class_xaml_generated_namespace_1_1_generated_internal_type_helper.html#ade0f04c0f7b18dd5b170e071d5534d38',1,'XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo propertyInfo, object target, object value, System.Globalization.CultureInfo culture)']]],
+  ['statechanged_3',['StateChanged',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_state_handler.html#a99406894fdf2447bd9ef7220ccda2e62',1,'PulpProcessAppDotNet4::Helpers::ProcessStateHandler']]]
 ];

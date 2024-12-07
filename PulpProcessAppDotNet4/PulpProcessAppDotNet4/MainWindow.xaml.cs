@@ -165,7 +165,7 @@ namespace PulpProcessAppDotNet4
                     if (!success)
                     {
                         logger.Error("Failed to initialize ProcessCommunicator.");
-                        MessageBox.Show("Järjestelmän palauttaminen epäonnistui, tarkista yhteys ja instrumentointi", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                        MessageBox.Show("Järjestelmän palauttaminen epäonnistui, tarkista yhteys ja instrumentointi.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                     }
                     ConnectionButton.IsEnabled = true; // Re-enable the button after the sequence
                     UpdateUI();

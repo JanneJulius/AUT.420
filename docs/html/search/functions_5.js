@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['parameterwindow_0',['ParameterWindow',['../class_pulp_process_app_dot_net4_1_1_parameter_window.html#a98ece2b0c49c913cba70ed4846a58d41',1,'PulpProcessAppDotNet4::ParameterWindow']]],
-  ['processcommunicator_1',['ProcessCommunicator',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_communicator.html#a471ff11c926079151e303065921571aa',1,'PulpProcessAppDotNet4::Helpers::ProcessCommunicator']]],
-  ['processstatehandler_2',['ProcessStateHandler',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_state_handler.html#a08699d026806945e6ad74af8a22ab317',1,'PulpProcessAppDotNet4::Helpers::ProcessStateHandler']]]
+  ['main_0',['Main',['../class_pulp_process_app_dot_net4_1_1_app.html#aef6d44b4f148ca87ea00c39ad46f4082',1,'PulpProcessAppDotNet4.App.Main()'],['../class_pulp_process_app_dot_net4_1_1_app.html#aef6d44b4f148ca87ea00c39ad46f4082',1,'PulpProcessAppDotNet4.App.Main()'],['../class_pulp_process_app_dot_net4_1_1_app.html#aef6d44b4f148ca87ea00c39ad46f4082',1,'PulpProcessAppDotNet4.App.Main()']]],
+  ['mainviewmodel_1',['MainViewModel',['../class_pulp_process_app_dot_net4_1_1_main_view_model.html#adf1f4f66dbea7519b1bfe9da61998c32',1,'PulpProcessAppDotNet4.MainViewModel.MainViewModel(ProcessCommunicator processCommunicator, LogViewModel logViewModel)'],['../class_pulp_process_app_dot_net4_1_1_main_view_model.html#adf1f4f66dbea7519b1bfe9da61998c32',1,'PulpProcessAppDotNet4.MainViewModel.MainViewModel(ProcessCommunicator processCommunicator, LogViewModel logViewModel)']]],
+  ['mainwindow_2',['MainWindow',['../class_pulp_process_app_dot_net4_1_1_main_window.html#a29d5263c55f92988a6839ebe794b762c',1,'PulpProcessAppDotNet4::MainWindow']]]
 ];

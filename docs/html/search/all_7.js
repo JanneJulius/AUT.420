@@ -1,17 +1,12 @@
 var searchData=
 [
-  ['about_20this_20project_0',['About This Project',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html',1,'About This Project'],['../md__pulp_process_app_dot_net4_2packages_2xunit_8runner_8visualstudio_82_88_82_2__content_2_r_e_a_d_m_e.html',1,'About This Project']]],
-  ['about_20xunit_20net_1',['About xUnit net',['../md__pulp_process_app_dot_net4_2packages_2xunit_82_89_82_2__content_2_r_e_a_d_m_e.html',1,'About xUnit.net'],['../md__pulp_process_app_dot_net4_2packages_2xunit_8assert_82_89_82_2__content_2_r_e_a_d_m_e.html',1,'About xUnit.net'],['../md__pulp_process_app_dot_net4_2packages_2xunit_8core_82_89_82_2__content_2_r_e_a_d_m_e.html',1,'About xUnit.net'],['../md__pulp_process_app_dot_net4_2packages_2xunit_8extensibility_8core_82_89_82_2__content_2_r_e_a_d_m_e.html',1,'About xUnit.net'],['../md__pulp_process_app_dot_net4_2packages_2xunit_8extensibility_8execution_82_89_82_2__content_2_r_e_a_d_m_e.html',1,'About xUnit.net'],['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html#autotoc_md44',1,'About xUnit.net'],['../md__pulp_process_app_dot_net4_2packages_2xunit_8runner_8visualstudio_82_88_82_2__content_2_r_e_a_d_m_e.html#autotoc_md55',1,'About xUnit.net']]],
-  ['action_2',['Analysis and Code Fix in Action',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html#autotoc_md42',1,'']]],
-  ['activesequence_3',['activeSequence',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_sequence_handler.html#a875d03daa9d9a3ce372aaff0f11f1960',1,'PulpProcessAppDotNet4::Helpers::SequenceHandler']]],
-  ['addlog_4',['AddLog',['../class_log_view_model.html#ac5dabab82584e6b9f6e152a13dc94f6d',1,'LogViewModel.AddLog(string message)'],['../class_log_view_model.html#ac5dabab82584e6b9f6e152a13dc94f6d',1,'LogViewModel.AddLog(string message)']]],
-  ['alpha001_202016_2004_2007_5',['4.0.0-alpha001 (2016-04-07)',['../md__pulp_process_app_dot_net4_2packages_2_castle_8_core_85_81_81_2_c_h_a_n_g_e_l_o_g.html#autotoc_md15',1,'']]],
-  ['analysis_20and_20code_20fix_20in_20action_6',['Analysis and Code Fix in Action',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html#autotoc_md42',1,'']]],
-  ['and_20code_20fix_20in_20action_7',['Analysis and Code Fix in Action',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html#autotoc_md42',1,'']]],
-  ['apiclient_8',['apiClient',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_communicator.html#aebb226036b4eed16511c2f51a3561906',1,'PulpProcessAppDotNet4::Helpers::ProcessCommunicator']]],
-  ['app_9',['App',['../class_pulp_process_app_dot_net4_1_1_app.html',1,'PulpProcessAppDotNet4']]],
-  ['app_2eg_2ecs_10',['App.g.cs',['../_app_8g_8cs.html',1,'']]],
-  ['app_2eg_2ei_2ecs_11',['App.g.i.cs',['../_app_8g_8i_8cs.html',1,'']]],
-  ['app_2examl_2ecs_12',['App.xaml.cs',['../_app_8xaml_8cs.html',1,'']]],
-  ['assemblyinfo_2ecs_13',['AssemblyInfo.cs',['../_assembly_info_8cs.html',1,'']]]
+  ['li100_0',['LI100',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_data.html#a2f93160c8f5e8413a54c1793db3e93e9',1,'PulpProcessAppDotNet4::Helpers::ProcessData']]],
+  ['li200_1',['LI200',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_data.html#ab16d93724915f1cbe25cc86e76bb51d5',1,'PulpProcessAppDotNet4::Helpers::ProcessData']]],
+  ['li400_2',['LI400',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_data.html#a56066ca15ed4b3a96c993c9ebc60d067',1,'PulpProcessAppDotNet4::Helpers::ProcessData']]],
+  ['logger_3',['logger',['../class_pulp_process_app_dot_net4_1_1_app.html#aba1f20610dbbf85be2d2b78e2dab010f',1,'PulpProcessAppDotNet4::App']]],
+  ['logs_4',['Logs',['../class_log_view_model.html#ab9a69f712b107f8f59cf97fef4fbcc27',1,'LogViewModel']]],
+  ['logviewmodel_5',['LogViewModel',['../class_log_view_model.html',1,'LogViewModel'],['../class_pulp_process_app_dot_net4_1_1_app.html#a9fe9f3b3684fd6973cbf40749cf56402',1,'PulpProcessAppDotNet4.App.LogViewModel'],['../class_observable_collection_target.html#aeb99deb842cf04671d708b816a4c335f',1,'ObservableCollectionTarget.LogViewModel'],['../class_pulp_process_app_dot_net4_1_1_main_view_model.html#ab1d77c3cac7dd288fcb71c103938c727',1,'PulpProcessAppDotNet4.MainViewModel.LogViewModel']]],
+  ['logviewmodel_2ecs_6',['LogViewModel.cs',['../_log_view_model_2_log_view_model_8cs.html',1,'(Global Namespace)'],['../_view_models_2_log_view_model_8cs.html',1,'(Global Namespace)']]],
+  ['lsminus300_7',['LSminus300',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_data.html#ad81d32c0993836723e7326884b773b19',1,'PulpProcessAppDotNet4::Helpers::ProcessData']]],
+  ['lsplus300_8',['LSplus300',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_data.html#a4f7a9da9d88a638da45636c8f4969744',1,'PulpProcessAppDotNet4::Helpers::ProcessData']]]
 ];

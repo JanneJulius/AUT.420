@@ -1,10 +1,9 @@
 var searchData=
 [
-  ['candidate_203_0',['Release Candidate 3',['../md__pulp_process_app_dot_net4_2packages_2_castle_8_core_85_81_81_2_c_h_a_n_g_e_l_o_g.html#autotoc_md34',1,'']]],
-  ['castle_20core_20changelog_1',['Castle Core Changelog',['../md__pulp_process_app_dot_net4_2packages_2_castle_8_core_85_81_81_2_c_h_a_n_g_e_l_o_g.html',1,'']]],
-  ['changelog_2',['Castle Core Changelog',['../md__pulp_process_app_dot_net4_2packages_2_castle_8_core_85_81_81_2_c_h_a_n_g_e_l_o_g.html',1,'']]],
-  ['changelog_2emd_3',['CHANGELOG.md',['../_c_h_a_n_g_e_l_o_g_8md.html',1,'']]],
-  ['code_20fix_20in_20action_4',['Analysis and Code Fix in Action',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html#autotoc_md42',1,'']]],
-  ['core_20changelog_5',['Castle Core Changelog',['../md__pulp_process_app_dot_net4_2packages_2_castle_8_core_85_81_81_2_c_h_a_n_g_e_l_o_g.html',1,'']]],
-  ['currentstate_6',['CurrentState',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_state_handler.html#a899fd5d67cb981ebc74b5f4d2e0e39b8',1,'PulpProcessAppDotNet4::Helpers::ProcessStateHandler']]]
+  ['observablecollectiontarget_0',['ObservableCollectionTarget',['../class_observable_collection_target.html',1,'']]],
+  ['observablecollectiontarget_2ecs_1',['ObservableCollectionTarget.cs',['../_observable_collection_target_8cs.html',1,'']]],
+  ['onclosed_2',['OnClosed',['../class_pulp_process_app_dot_net4_1_1_main_window.html#abe0a8e0e1efc873cd32404d4b87032df',1,'PulpProcessAppDotNet4::MainWindow']]],
+  ['onexit_3',['OnExit',['../class_pulp_process_app_dot_net4_1_1_app.html#ab205c511dbaa783800a797defbf5575f',1,'PulpProcessAppDotNet4::App']]],
+  ['onpropertychanged_4',['OnPropertyChanged',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_data.html#ab5d83fe809381c91487693a4238828c6',1,'PulpProcessAppDotNet4.Helpers.ProcessData.OnPropertyChanged()'],['../class_log_view_model.html#a712cae1f9c703d1850c86bad9f6fadda',1,'LogViewModel.OnPropertyChanged()'],['../class_pulp_process_app_dot_net4_1_1_main_view_model.html#a6d893684d81eee293007e2464a491bd3',1,'PulpProcessAppDotNet4.MainViewModel.OnPropertyChanged()'],['../class_log_view_model.html#a712cae1f9c703d1850c86bad9f6fadda',1,'LogViewModel.OnPropertyChanged()'],['../class_pulp_process_app_dot_net4_1_1_main_view_model.html#a6d893684d81eee293007e2464a491bd3',1,'PulpProcessAppDotNet4.MainViewModel.OnPropertyChanged()']]],
+  ['onstartup_5',['OnStartup',['../class_pulp_process_app_dot_net4_1_1_app.html#ae5d1c236f48a6ebab1ddf8355713b291',1,'PulpProcessAppDotNet4::App']]]
 ];
