@@ -194,11 +194,58 @@ namespace PulpProcessAppDotNet4.Helpers
                 }
 
                 log.Info("Whole sequence completed successfully!");
+
+                ResetToInitialState();
                 return true;
             }
             catch (Exception ex)
             {
                 log.Error($"Unknown error during whole sequence: {ex.Message}");
+                return false;
+            }
+        }
+
+        /// <summary>
+        /// Resets all process components to their initial state.
+        /// </summary>
+        /// <remarks>
+        /// Ensures that all valves are closed, pumps are turned off, heaters are turned off,
+        /// and any other components are returned to their starting conditions.
+        /// </remarks>
+        public bool ResetToInitialState()
+        {
+            try
+            {
+                log.Info("Resetting process to initial state...");
+
+                // Close all valves
+                apiClient.SetOnOffItem("V103", false);
+                apiClient.SetOnOffItem("V201", false);
+                apiClient.SetOnOffItem("V204", false);
+                apiClient.SetOnOffItem("V301", false);
+                apiClient.SetOnOffItem("V302", false);
+                apiClient.SetOnOffItem("V303", false);
+                apiClient.SetOnOffItem("V304", false);
+                apiClient.SetOnOffItem("V401", false);
+                apiClient.SetOnOffItem("V404", false);
+
+                // Set valve openings to 0 (fully closed)
+                apiClient.SetValveOpening("V102", 0);
+                apiClient.SetValveOpening("V104", 0);
+
+                // Turn off all pumps
+                apiClient.SetPumpControl("P100", 0);
+                apiClient.SetPumpControl("P200", 0);
+
+                // Turn off all heaters
+                apiClient.SetOnOffItem("E100", false);
+
+                log.Info("Process successfully reset to initial state.");
+                return true;
+            }
+            catch (Exception ex)
+            {
+                log.Error($"Error while resetting process to initial state: {ex.Message}");
                 return false;
             }
         }
@@ -273,7 +320,7 @@ namespace PulpProcessAppDotNet4.Helpers
                 if (!EM4_OP1()) throw new Exception("Failed to execute EM4_OP1 (Open outlet for black liquor fill).");
 
                 // Wait for LI400 level
-                WaitForCondition(() => communicator.ProcessData.LI400 > 27, TimeSpan.FromSeconds(20), "LI400 did not reach the required level.");
+                WaitForCondition(() => communicator.ProcessData.LI400 < 35, TimeSpan.FromSeconds(100), "LI400 did not reach the required level.");
 
                 // Final operations
                 if (!EM3_OP6()) throw new Exception("Failed to execute EM3_OP6 (Close all inlets and outlets).");
@@ -295,6 +342,7 @@ namespace PulpProcessAppDotNet4.Helpers
         /// </summary>
         /// <remarks>
         /// Handles filling the white liquor tank by opening valves, starting pumps, and monitoring levels.
+        /// ”LI400 indicates that enough liquor has been displaced" => LI400 is more than 80 mm
         /// </remarks>
         /// <returns>
         /// Returns <c>true</c> if the sequence completes successfully; otherwise, <c>false</c>.
@@ -311,7 +359,7 @@ namespace PulpProcessAppDotNet4.Helpers
                 if (!EM1_OP2()) throw new Exception("Failed to execute EM1_OP2 (Open route to digester/T300 and pump P100).");
 
                 // Wait for LI400 level
-                WaitForCondition(() => communicator.ProcessData.LI400 > 27, TimeSpan.FromSeconds(20), "LI400 did not reach the required level.");
+                WaitForCondition(() => communicator.ProcessData.LI400 > 80, TimeSpan.FromSeconds(100), "LI400 did not reach the required level.");
 
                 // Final operations
                 if (!EM3_OP6()) throw new Exception("Failed to execute EM3_OP6 (Close all inlets and outlets).");

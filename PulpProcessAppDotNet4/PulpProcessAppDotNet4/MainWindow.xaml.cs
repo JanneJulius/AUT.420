@@ -60,6 +60,7 @@ namespace PulpProcessAppDotNet4
             processStateHandler.StateChanged += OnProcessStateChanged;
 
             UpdateUI();
+            UpdateButtonState();
         }
 
         /// <summary>
@@ -118,24 +119,29 @@ namespace PulpProcessAppDotNet4
             switch (newState)
             {
                 case ProcessState.Initialized:
-                    break;
-
-                case ProcessState.Running:
-                    Task.Run(() =>
+                case ProcessState.Halted:
+                    Dispatcher.Invoke(() =>
                     {
-                        bool success = sequenceHandler.RunWholeSequence();
-                        if (!success)
-                        {
-                            Dispatcher.Invoke(() =>
-                            {
-                                processStateHandler.CurrentState = ProcessState.Halted;
-                                UpdateUI();
-                            });
-                        }
+                        ConnectionButton.IsEnabled = true; // Enable the button
                     });
                     break;
 
-                case ProcessState.Halted:
+                case ProcessState.Running:
+                    Dispatcher.Invoke(() =>
+                    {
+                        ConnectionButton.IsEnabled = false; // Disable the button
+                    });
+
+                    Task.Run(() =>
+                    {
+                        bool success = sequenceHandler.RunWholeSequence();
+                        Dispatcher.Invoke(() =>
+                        {
+                            processStateHandler.CurrentState = success ? ProcessState.Initialized : ProcessState.Halted;
+                            ConnectionButton.IsEnabled = true; // Re-enable the button after the sequence
+                            UpdateUI();
+                        });
+                    });
                     break;
             }
 
@@ -182,7 +188,7 @@ namespace PulpProcessAppDotNet4
         /// </summary>
         private void UpdateButtonState()
         {
-            ConnectionButton.Content = processCommunicator.IsConnected ? "Disconnect" : "Reconnect";
+            ConnectionButton.Content = processCommunicator.IsConnected ? "Katkaise yhteys" : "Yhdistä";
         }
 
         /// <summary>
