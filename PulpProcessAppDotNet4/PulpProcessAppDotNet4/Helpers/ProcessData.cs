@@ -4,11 +4,21 @@ using PulpProcessAppDotNet4.Helpers;
 namespace PulpProcessAppDotNet4.Helpers
 {
     /// <summary>
-    /// Creates event handlers for the UI interface to use.
+    /// Represents process data and provides change notification for UI bindings.
     /// </summary>
     public class ProcessData : INotifyPropertyChanged
     {
+        /// <summary>
+        /// The level indicator value for Tank 100.
+        /// </summary>
         private int _LI100;
+
+        /// <summary>
+        /// Gets or sets the level indicator value for Tank 100.
+        /// </summary>
+        /// <remarks>
+        /// Changes to this property trigger the <see cref="PropertyChanged"/> event.
+        /// </remarks>
         public int LI100
         {
             get => _LI100;
@@ -22,7 +32,17 @@ namespace PulpProcessAppDotNet4.Helpers
             }
         }
 
+        /// <summary>
+        /// The level indicator value for Tank 200.
+        /// </summary>
         private int _LI200;
+
+        /// <summary>
+        /// Gets or sets the level indicator value for Tank 200.
+        /// </summary>
+        /// <remarks>
+        /// Changes to this property trigger the <see cref="PropertyChanged"/> event.
+        /// </remarks>
         public int LI200
         {
             get => _LI200;
@@ -36,7 +56,17 @@ namespace PulpProcessAppDotNet4.Helpers
             }
         }
 
+        /// <summary>
+        /// The pressure indicator value for Tank 300.
+        /// </summary>
         private int _PI300;
+
+        /// <summary>
+        /// Gets or sets the pressure indicator value for Tank 300.
+        /// </summary>
+        /// <remarks>
+        /// Changes to this property trigger the <see cref="PropertyChanged"/> event.
+        /// </remarks>
         public int PI300
         {
             get => _PI300;
@@ -49,7 +79,18 @@ namespace PulpProcessAppDotNet4.Helpers
                 }
             }
         }
+
+        /// <summary>
+        /// The temperature indicator value for Tank 300.
+        /// </summary>
         private double _TI300;
+
+        /// <summary>
+        /// Gets or sets the temperature indicator value for Tank 300.
+        /// </summary>
+        /// <remarks>
+        /// Changes to this property trigger the <see cref="PropertyChanged"/> event.
+        /// </remarks>
         public double TI300
         {
             get => _TI300;
@@ -62,7 +103,18 @@ namespace PulpProcessAppDotNet4.Helpers
                 }
             }
         }
+
+        /// <summary>
+        /// The level indicator value for Tank 400.
+        /// </summary>
         private int _LI400;
+
+        /// <summary>
+        /// Gets or sets the level indicator value for Tank 400.
+        /// </summary>
+        /// <remarks>
+        /// Changes to this property trigger the <see cref="PropertyChanged"/> event.
+        /// </remarks>
         public int LI400
         {
             get => _LI400;
@@ -75,7 +127,18 @@ namespace PulpProcessAppDotNet4.Helpers
                 }
             }
         }
+
+        /// <summary>
+        /// The limit switch state for Tank 300 (positive).
+        /// </summary>
         private bool _LSplus300;
+
+        /// <summary>
+        /// Gets or sets the limit switch state for Tank 300 (positive).
+        /// </summary>
+        /// <remarks>
+        /// Changes to this property trigger the <see cref="PropertyChanged"/> event.
+        /// </remarks>
         public bool LSplus300
         {
             get => _LSplus300;
@@ -89,7 +152,17 @@ namespace PulpProcessAppDotNet4.Helpers
             }
         }
 
+        /// <summary>
+        /// The limit switch state for Tank 300 (negative).
+        /// </summary>
         private bool _LSminus300;
+
+        /// <summary>
+        /// Gets or sets the limit switch state for Tank 300 (negative).
+        /// </summary>
+        /// <remarks>
+        /// Changes to this property trigger the <see cref="PropertyChanged"/> event.
+        /// </remarks>
         public bool LSminus300
         {
             get => _LSminus300;
@@ -103,7 +176,15 @@ namespace PulpProcessAppDotNet4.Helpers
             }
         }
 
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// Raises the <see cref="PropertyChanged"/> event for the specified property.
+        /// </summary>
+        /// <param name="propertyName">The name of the property that changed.</param>
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
