@@ -1,4 +1,5 @@
-﻿using PulpProcessAppDotNet4.Helpers;
+﻿using NLog;
+using PulpProcessAppDotNet4.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace PulpProcessAppDotNet4
         private readonly LogViewModel logViewModel;
         private readonly SequenceHandler sequenceHandler;
         private readonly ProcessStateHandler processStateHandler;
+        private readonly Logger logger = App.logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="MainWindow"/> class.
@@ -153,8 +155,22 @@ namespace PulpProcessAppDotNet4
         /// </summary>
         private void OnReset(object sender, RoutedEventArgs e)
         {
-            processStateHandler.CurrentState = ProcessState.Initialized;
-            UpdateUI();
+
+            Task.Run(() =>
+            {
+                bool success = sequenceHandler.ResetToInitialState();
+                Dispatcher.Invoke(() =>
+                {
+                    processStateHandler.CurrentState = success ? ProcessState.Initialized : ProcessState.Halted;
+                    if (!success)
+                    {
+                        logger.Error("Failed to initialize ProcessCommunicator.");
+                        MessageBox.Show("Järjestelmän palauttaminen epäonnistui, tarkista yhteys ja instrumentointi", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                    }
+                    ConnectionButton.IsEnabled = true; // Re-enable the button after the sequence
+                    UpdateUI();
+                });
+            });
         }
 
         /// <summary>
