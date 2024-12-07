@@ -17,10 +17,12 @@ var searchData=
   ['processstate_14',['ProcessState',['../namespace_pulp_process_app_dot_net4_1_1_helpers.html#af7ba3055679ed58bccb12c8d41c81d53',1,'PulpProcessAppDotNet4::Helpers']]],
   ['processstatehandler_15',['ProcessStateHandler',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_state_handler.html',1,'PulpProcessAppDotNet4.Helpers.ProcessStateHandler'],['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_state_handler.html#a08699d026806945e6ad74af8a22ab317',1,'PulpProcessAppDotNet4.Helpers.ProcessStateHandler.ProcessStateHandler()']]],
   ['processstatehandler_2ecs_16',['ProcessStateHandler.cs',['../_process_state_handler_8cs.html',1,'']]],
-  ['project_17',['Project',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html',1,'About This Project'],['../md__pulp_process_app_dot_net4_2packages_2xunit_8runner_8visualstudio_82_88_82_2__content_2_r_e_a_d_m_e.html',1,'About This Project']]],
-  ['propertychanged_18',['PropertyChanged',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_data.html#a56f02aa2ba9584e797471f2e8d12ec76',1,'PulpProcessAppDotNet4.Helpers.ProcessData.PropertyChanged'],['../class_log_view_model.html#ae58754dceea84e794fc4e386026eb95a',1,'LogViewModel.PropertyChanged'],['../class_pulp_process_app_dot_net4_1_1_main_view_model.html#a1b9e6ce3b950c90ff9cbe39d293b6590',1,'PulpProcessAppDotNet4.MainViewModel.PropertyChanged']]],
-  ['pulpprocessappdotnet4_19',['PulpProcessAppDotNet4',['../namespace_pulp_process_app_dot_net4.html',1,'']]],
-  ['pulpprocessappdotnet4_3a_3ahelpers_20',['Helpers',['../namespace_pulp_process_app_dot_net4_1_1_helpers.html',1,'PulpProcessAppDotNet4']]],
-  ['pulpprocessappdotnet4_3a_3aproperties_21',['Properties',['../namespace_pulp_process_app_dot_net4_1_1_properties.html',1,'PulpProcessAppDotNet4']]],
-  ['pulpprocessappdotnet4_3a_3atests_22',['Tests',['../namespace_pulp_process_app_dot_net4_1_1_tests.html',1,'PulpProcessAppDotNet4']]]
+  ['progresstoheightconverter_17',['ProgressToHeightConverter',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_progress_to_height_converter.html',1,'PulpProcessAppDotNet4::Helpers']]],
+  ['progresstoheightconverter_2ecs_18',['ProgressToHeightConverter.cs',['../_progress_to_height_converter_8cs.html',1,'']]],
+  ['project_19',['Project',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html',1,'About This Project'],['../md__pulp_process_app_dot_net4_2packages_2xunit_8runner_8visualstudio_82_88_82_2__content_2_r_e_a_d_m_e.html',1,'About This Project']]],
+  ['propertychanged_20',['PropertyChanged',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_data.html#a56f02aa2ba9584e797471f2e8d12ec76',1,'PulpProcessAppDotNet4.Helpers.ProcessData.PropertyChanged'],['../class_log_view_model.html#ae58754dceea84e794fc4e386026eb95a',1,'LogViewModel.PropertyChanged'],['../class_pulp_process_app_dot_net4_1_1_main_view_model.html#a1b9e6ce3b950c90ff9cbe39d293b6590',1,'PulpProcessAppDotNet4.MainViewModel.PropertyChanged']]],
+  ['pulpprocessappdotnet4_21',['PulpProcessAppDotNet4',['../namespace_pulp_process_app_dot_net4.html',1,'']]],
+  ['pulpprocessappdotnet4_3a_3ahelpers_22',['Helpers',['../namespace_pulp_process_app_dot_net4_1_1_helpers.html',1,'PulpProcessAppDotNet4']]],
+  ['pulpprocessappdotnet4_3a_3aproperties_23',['Properties',['../namespace_pulp_process_app_dot_net4_1_1_properties.html',1,'PulpProcessAppDotNet4']]],
+  ['pulpprocessappdotnet4_3a_3atests_24',['Tests',['../namespace_pulp_process_app_dot_net4_1_1_tests.html',1,'PulpProcessAppDotNet4']]]
 ];
