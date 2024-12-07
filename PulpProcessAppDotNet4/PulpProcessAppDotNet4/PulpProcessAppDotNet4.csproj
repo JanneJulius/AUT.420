@@ -53,7 +53,7 @@
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="Tuni.MppOpcUaClientLib">
-      <HintPath>..\..\MppOpcUaClientLib_dll\MppOpcUaClientLib_dll\Tuni.MppOpcUaClientLib.dll</HintPath>
+      <HintPath>..\..\MppOpcUaClientLib_dll\Tuni.MppOpcUaClientLib.dll</HintPath>
     </Reference>
     <Reference Include="UnifiedAutomation.UaBase">
       <HintPath>..\..\MppOpcUaClientLib_dll\UnifiedAutomation.UaBase.dll</HintPath>

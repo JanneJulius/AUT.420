@@ -83,7 +83,7 @@
         <!-- TI300 Lämpötila Bar -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="450,50,0,0">
             <Rectangle Fill="Orange" Width="100" Height="20" HorizontalAlignment="Left"/>
-            <TextBlock Text="{Binding ProcessData.TI300, StringFormat='T300 lämpötila: {0}'}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,0,0,0"/>
+            <TextBlock Text="{Binding ProcessData.TI300, StringFormat='T300 lämpötila: {0:F2}'}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="110,0,0,0"/>
         </Grid>
 
         <!-- PI300 Paine Gauge -->
@@ -96,7 +96,7 @@
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,300,0,0">
             <Button x:Name="StartPauseButton" Width="150" Height="50" Margin="-112.5,0,20,0" Click="OnStart"/>
             <Button Content="Palauta" Width="150" Height="50" Margin="170,0,0,0" Click="OnReset"/>
-            <Button Name="ConnectionButton" Content="Reconnect" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,85,0,0"  Width="150" Height="25" Click="ConnectionButton_Click" />
+            <Button Name="ConnectionButton" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,85,0,0"  Width="150" Height="25" Click="ConnectionButton_Click" />
         </Grid>
 
         <!-- Status and Connection -->

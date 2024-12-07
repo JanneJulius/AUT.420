@@ -12,32 +12,48 @@ using System.Windows;
 namespace PulpProcessAppDotNet4
 {
     /// <summary>
-    /// Interaction logic for App.xaml
+    /// Represents the entry point of the application and manages global initialization, logging, and shutdown behavior.
     /// </summary>
     public partial class App : Application
     {
+        /// <summary>
+        /// The global logger instance for logging messages throughout the application.
+        /// </summary>
         public static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
-        // Global instances accessible throughout the app
+        /// <summary>
+        /// The global log view model used for managing and displaying log messages in the UI.
+        /// </summary>
         public static LogViewModel LogViewModel { get; private set; }
+
+        /// <summary>
+        /// The global process communicator for handling communication with the external process API.
+        /// </summary>
         public static ProcessCommunicator ProcessCommunicator { get; private set; }
+
+        /// <summary>
+        /// The global sequence handler for managing process sequences.
+        /// </summary>
         public static SequenceHandler SequenceHandler { get; private set; }
 
-
+        /// <summary>
+        /// Handles application startup logic, including initializing global components and logging.
+        /// </summary>
+        /// <param name="e">The event arguments for the startup event.</param>
         protected override async void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
 
             // Initialize the ViewModel
-            LogViewModel = new LogViewModel(); // Initialize once here
+            LogViewModel = new LogViewModel();
 
-            // Initialize the NLog configuration programmatically
+            // Configure logging
             ConfigureLogging();
-            logger.Info("logging configured");
+            logger.Info("Logging configured.");
 
             try
             {
-                // Run ProcessCommunicator initialization asynchronously
+                // Initialize ProcessCommunicator asynchronously
                 bool success = await Task.Run(() =>
                 {
                     ProcessCommunicator = new ProcessCommunicator();
@@ -66,7 +82,7 @@ namespace PulpProcessAppDotNet4
             // Log application start
             logger.Info("Application started.");
 
-            // Optionally, handle unhandled exceptions to log them
+            // Handle unhandled exceptions
             AppDomain.CurrentDomain.UnhandledException += (s, ev) =>
             {
                 logger.Error(ev.ExceptionObject as Exception, "Unhandled exception occurred.");
@@ -78,10 +94,13 @@ namespace PulpProcessAppDotNet4
             };
 
             // Create and show the main window
-            var mainWindow = new MainWindow(); // Replace with your MainWindow class
+            var mainWindow = new MainWindow();
             mainWindow.Show();
         }
 
+        /// <summary>
+        /// Configures the NLog logging system, including adding a target for in-memory logging.
+        /// </summary>
         private void ConfigureLogging()
         {
             // Create a new NLog configuration
@@ -103,6 +122,11 @@ namespace PulpProcessAppDotNet4
             // Apply the configuration
             LogManager.Configuration = config;
         }
+
+        /// <summary>
+        /// Handles application shutdown logic, ensuring that all logs are flushed and resources are cleaned up.
+        /// </summary>
+        /// <param name="e">The event arguments for the exit event.</param>
         protected override void OnExit(ExitEventArgs e)
         {
             logger.Info("Application is shutting down.");
