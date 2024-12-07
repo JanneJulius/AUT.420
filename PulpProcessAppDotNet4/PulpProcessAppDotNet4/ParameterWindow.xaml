@@ -22,10 +22,9 @@
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,100,0,0">
             <TextBlock Text="Kyllästysaika:" FontSize="16" VerticalAlignment="Center"/>
             <TextBox Name="ImpregnationTimeTextBox" Width="100" Height="30" Margin="120,0,0,0" VerticalAlignment="Center"/>
+            <TextBlock Text="s" FontSize="16" VerticalAlignment="Center"/>
             <ComboBox Width="80" Height="30" Margin="230,0,0,0" VerticalAlignment="Center">
                 <ComboBoxItem Content="s" IsSelected="True"/>
-                <ComboBoxItem Content="min"/>
-                <ComboBoxItem Content="h"/>
             </ComboBox>
         </Grid>
 
@@ -35,7 +34,6 @@
             <TextBox Name="TargetTemperatureTextBox" Width="100" Height="30" Margin="120,0,0,0" VerticalAlignment="Center"/>
             <ComboBox Width="80" Height="30" Margin="230,0,0,0" VerticalAlignment="Center">
                 <ComboBoxItem Content="°C" IsSelected="True"/>
-                <ComboBoxItem Content="°F"/>
             </ComboBox>
         </Grid>
 
@@ -45,7 +43,6 @@
             <TextBox Name="TargetPressureTextBox" Width="100" Height="30" Margin="120,0,0,0" VerticalAlignment="Center"/>
             <ComboBox Width="80" Height="30" Margin="230,0,0,0" VerticalAlignment="Center">
                 <ComboBoxItem Content="bar" IsSelected="True"/>
-                <ComboBoxItem Content="psi"/>
             </ComboBox>
         </Grid>
 
