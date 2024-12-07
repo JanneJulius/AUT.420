@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['halted_0',['Halted',['../namespace_pulp_process_app_dot_net4_1_1_helpers.html#af7ba3055679ed58bccb12c8d41c81d53a5f0dc0c7e4e48e1ea3e8b451ecb2b782',1,'PulpProcessAppDotNet4::Helpers']]],
-  ['hassequenceerror_1',['hasSequenceError',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_sequence_handler.html#ad6972436bb28166bd5d871657f8f60d0',1,'PulpProcessAppDotNet4::Helpers::SequenceHandler']]],
-  ['how_20to_20install_2',['How to install',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html#autotoc_md40',1,'']]],
-  ['how_20to_20uninstall_3',['How to uninstall',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html#autotoc_md41',1,'']]]
+  ['features_0',['Features',['../md__pulp_process_app_dot_net4_2packages_2_just_mock_82024_84_81203_8350_2docs_2_r_e_a_d_m_e.html#autotoc_md38',1,'JustMock Key Features'],['../md__pulp_process_app_dot_net4_2packages_2_just_mock_82024_84_81203_8350_2docs_2_r_e_a_d_m_e.html#autotoc_md36',1,'JustMock Lite Key Features']]],
+  ['feedback_1',['Feedback',['../md__pulp_process_app_dot_net4_2packages_2_just_mock_82024_84_81203_8350_2docs_2_r_e_a_d_m_e.html#autotoc_md43',1,'']]],
+  ['fix_20in_20action_2',['Analysis and Code Fix in Action',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html#autotoc_md51',1,'']]],
+  ['frameworks_3',['Supported .NET Frameworks',['../md__pulp_process_app_dot_net4_2packages_2_just_mock_82024_84_81203_8350_2docs_2_r_e_a_d_m_e.html#autotoc_md41',1,'']]]
 ];

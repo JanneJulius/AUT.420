@@ -1,11 +1,8 @@
 var searchData=
 [
-  ['impregnationtime_0',['ImpregnationTime',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_parameter_data.html#a1f77873cf01637b317547ecd224a3b23',1,'PulpProcessAppDotNet4.Helpers.ParameterData.ImpregnationTime'],['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_sequence_handler.html#af83ea5bad9106b656647a05d24868ab8',1,'PulpProcessAppDotNet4.Helpers.SequenceHandler.ImpregnationTime']]],
-  ['in_20action_1',['Analysis and Code Fix in Action',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html#autotoc_md42',1,'']]],
-  ['initialize_2',['Initialize',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_communicator.html#a5af104750832a5afc74ca9df80979cc3',1,'PulpProcessAppDotNet4::Helpers::ProcessCommunicator']]],
-  ['initializecomponent_3',['InitializeComponent',['../class_pulp_process_app_dot_net4_1_1_main_window.html#a862719ceda0fc15734ef0bbf3f7cb2c7',1,'PulpProcessAppDotNet4.MainWindow.InitializeComponent()'],['../class_pulp_process_app_dot_net4_1_1_main_window.html#a862719ceda0fc15734ef0bbf3f7cb2c7',1,'PulpProcessAppDotNet4.MainWindow.InitializeComponent()'],['../class_pulp_process_app_dot_net4_1_1_parameter_window.html#af090917112459a773e6339e439ef4f01',1,'PulpProcessAppDotNet4.ParameterWindow.InitializeComponent()'],['../class_pulp_process_app_dot_net4_1_1_parameter_window.html#af090917112459a773e6339e439ef4f01',1,'PulpProcessAppDotNet4.ParameterWindow.InitializeComponent()']]],
-  ['initialized_4',['Initialized',['../namespace_pulp_process_app_dot_net4_1_1_helpers.html#af7ba3055679ed58bccb12c8d41c81d53a59d87a4758a9d35fbaf6b204341bb399',1,'PulpProcessAppDotNet4::Helpers']]],
-  ['install_5',['How to install',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html#autotoc_md40',1,'']]],
-  ['isconnected_6',['IsConnected',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_communicator.html#af7b77b49369b7b099494f1adc16cd159',1,'PulpProcessAppDotNet4::Helpers::ProcessCommunicator']]],
-  ['iswholesequencecomplete_7',['isWholeSequenceComplete',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_sequence_handler.html#adfb0945b13cd88c6ee27d8dae083df98',1,'PulpProcessAppDotNet4::Helpers::SequenceHandler']]]
+  ['halted_0',['Halted',['../namespace_pulp_process_app_dot_net4_1_1_helpers.html#af7ba3055679ed58bccb12c8d41c81d53a5f0dc0c7e4e48e1ea3e8b451ecb2b782',1,'PulpProcessAppDotNet4::Helpers']]],
+  ['happy_20mocking_1',['Happy mocking!',['../md__pulp_process_app_dot_net4_2packages_2_just_mock_82024_84_81203_8350_2docs_2_r_e_a_d_m_e.html#autotoc_md44',1,'']]],
+  ['hassequenceerror_2',['hasSequenceError',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_sequence_handler.html#ad6972436bb28166bd5d871657f8f60d0',1,'PulpProcessAppDotNet4::Helpers::SequenceHandler']]],
+  ['how_20to_20install_3',['How to install',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html#autotoc_md49',1,'']]],
+  ['how_20to_20uninstall_4',['How to uninstall',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html#autotoc_md50',1,'']]]
 ];
