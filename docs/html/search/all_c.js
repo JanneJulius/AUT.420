@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['sequencehandler_0',['SequenceHandler',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_sequence_handler.html',1,'PulpProcessAppDotNet4.Helpers.SequenceHandler'],['../class_pulp_process_app_dot_net4_1_1_app.html#a2d55975d6a3785b0e79924124653c3fd',1,'PulpProcessAppDotNet4.App.SequenceHandler'],['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_sequence_handler.html#a2935f1f4fbc7922783842f096c5c9f3f',1,'PulpProcessAppDotNet4.Helpers.SequenceHandler.SequenceHandler()']]],
-  ['sequencehandler_2ecs_1',['SequenceHandler.cs',['../_sequence_handler_8cs.html',1,'']]],
-  ['setpropertyvalue_2',['SetPropertyValue',['../class_xaml_generated_namespace_1_1_generated_internal_type_helper.html#ade0f04c0f7b18dd5b170e071d5534d38',1,'XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo propertyInfo, object target, object value, System.Globalization.CultureInfo culture)'],['../class_xaml_generated_namespace_1_1_generated_internal_type_helper.html#ade0f04c0f7b18dd5b170e071d5534d38',1,'XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo propertyInfo, object target, object value, System.Globalization.CultureInfo culture)']]],
-  ['statechanged_3',['StateChanged',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_state_handler.html#a99406894fdf2447bd9ef7220ccda2e62',1,'PulpProcessAppDotNet4::Helpers::ProcessStateHandler']]]
+  ['features_0',['Features',['../md__pulp_process_app_dot_net4_2packages_2_just_mock_82024_84_81203_8350_2docs_2_r_e_a_d_m_e.html#autotoc_md38',1,'JustMock Key Features'],['../md__pulp_process_app_dot_net4_2packages_2_just_mock_82024_84_81203_8350_2docs_2_r_e_a_d_m_e.html#autotoc_md36',1,'JustMock Lite Key Features']]],
+  ['feedback_1',['Feedback',['../md__pulp_process_app_dot_net4_2packages_2_just_mock_82024_84_81203_8350_2docs_2_r_e_a_d_m_e.html#autotoc_md43',1,'']]],
+  ['fix_20in_20action_2',['Analysis and Code Fix in Action',['../md__pulp_process_app_dot_net4_2packages_2xunit_8analyzers_81_816_80_2__content_2_r_e_a_d_m_e.html#autotoc_md51',1,'']]],
+  ['frameworks_3',['Supported .NET Frameworks',['../md__pulp_process_app_dot_net4_2packages_2_just_mock_82024_84_81203_8350_2docs_2_r_e_a_d_m_e.html#autotoc_md41',1,'']]]
 ];

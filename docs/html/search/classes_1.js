@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['generatedinternaltypehelper_0',['GeneratedInternalTypeHelper',['../class_xaml_generated_namespace_1_1_generated_internal_type_helper.html',1,'XamlGeneratedNamespace']]]
+  ['logviewmodel_0',['LogViewModel',['../class_log_view_model.html',1,'']]]
 ];

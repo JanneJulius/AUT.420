@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['sequencehandler_0',['SequenceHandler',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_sequence_handler.html',1,'PulpProcessAppDotNet4.Helpers.SequenceHandler'],['../class_pulp_process_app_dot_net4_1_1_app.html#a2d55975d6a3785b0e79924124653c3fd',1,'PulpProcessAppDotNet4.App.SequenceHandler'],['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_sequence_handler.html#a2935f1f4fbc7922783842f096c5c9f3f',1,'PulpProcessAppDotNet4.Helpers.SequenceHandler.SequenceHandler()']]],
-  ['sequencehandler_2ecs_1',['SequenceHandler.cs',['../_sequence_handler_8cs.html',1,'']]],
-  ['settings_2edesigner_2ecs_2',['Settings.Designer.cs',['../_settings_8_designer_8cs.html',1,'']]],
-  ['sponsors_3',['Sponsors',['../md__pulp_process_app_dot_net4_2packages_2_moq_84_820_872_2readme.html#autotoc_md36',1,'']]],
-  ['statechanged_4',['StateChanged',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_state_handler.html#a99406894fdf2447bd9ef7220ccda2e62',1,'PulpProcessAppDotNet4::Helpers::ProcessStateHandler']]]
+  ['observablecollectiontarget_0',['ObservableCollectionTarget',['../class_observable_collection_target.html',1,'']]],
+  ['observablecollectiontarget_2ecs_1',['ObservableCollectionTarget.cs',['../_observable_collection_target_8cs.html',1,'']]],
+  ['onclosed_2',['OnClosed',['../class_pulp_process_app_dot_net4_1_1_main_window.html#abe0a8e0e1efc873cd32404d4b87032df',1,'PulpProcessAppDotNet4::MainWindow']]],
+  ['onexit_3',['OnExit',['../class_pulp_process_app_dot_net4_1_1_app.html#ab205c511dbaa783800a797defbf5575f',1,'PulpProcessAppDotNet4::App']]],
+  ['onpropertychanged_4',['OnPropertyChanged',['../class_pulp_process_app_dot_net4_1_1_helpers_1_1_process_data.html#ab5d83fe809381c91487693a4238828c6',1,'PulpProcessAppDotNet4.Helpers.ProcessData.OnPropertyChanged()'],['../class_log_view_model.html#a712cae1f9c703d1850c86bad9f6fadda',1,'LogViewModel.OnPropertyChanged()'],['../class_pulp_process_app_dot_net4_1_1_main_view_model.html#a6d893684d81eee293007e2464a491bd3',1,'PulpProcessAppDotNet4.MainViewModel.OnPropertyChanged()'],['../class_log_view_model.html#a712cae1f9c703d1850c86bad9f6fadda',1,'LogViewModel.OnPropertyChanged()'],['../class_pulp_process_app_dot_net4_1_1_main_view_model.html#a6d893684d81eee293007e2464a491bd3',1,'PulpProcessAppDotNet4.MainViewModel.OnPropertyChanged()']]],
+  ['onstartup_5',['OnStartup',['../class_pulp_process_app_dot_net4_1_1_app.html#ae5d1c236f48a6ebab1ddf8355713b291',1,'PulpProcessAppDotNet4::App']]]
 ];
