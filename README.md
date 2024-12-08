@@ -1,7 +1,7 @@
 # AUT.420
 
 ## Required documents
-  - From docs, one can find all required docs for the project:  project documentation, testing documentation, and doxygen documentation (this cna be found from /docs/html/)
+  - From docs, one can find all required docs for the project:  project documentation, testing documentation, and doxygen documentation (this can be found from /docs/html/)
 
 ## Using the application
   1. Start standalone server by navigating to /BatchProcSimulator_standalone and commanding 
