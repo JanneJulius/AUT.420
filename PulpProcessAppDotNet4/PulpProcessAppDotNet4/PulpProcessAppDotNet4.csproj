@@ -128,7 +128,6 @@
     <Compile Include="Helpers\SequenceHandler.cs" />
     <Compile Include="Helpers\ProcessData.cs" />
     <Compile Include="Tests\ProcessCommunicatorTest.cs" />
-    <Compile Include="Tests\SequenceHandlerTest.cs" />
     <Compile Include="ViewModels\LogViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">

@@ -240,6 +240,9 @@ namespace PulpProcessAppDotNet4.Helpers
                 // Turn off all heaters
                 apiClient.SetOnOffItem("E100", false);
 
+                // Abort the thread
+                sequencedrivethread.Abort();
+
                 log.Info("Process successfully reset to initial state.");
                 return true;
             }

@@ -125,7 +125,7 @@
         <!-- Buttons -->
         <Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="20,300,0,0">
             <Button x:Name="StartPauseButton" Width="150" Height="50" Margin="-112.5,0,20,0" Click="OnStart"/>
-            <Button Content="Palauta" Width="150" Height="50" Margin="170,0,0,0" Click="OnReset"/>
+            <Button Name="ResetButton" Content="Palauta" Width="150" Height="50" Margin="170,0,0,0" Click="OnReset"/>
             <Button Name="ConnectionButton" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,85,0,0"  Width="150" Height="25" Click="ConnectionButton_Click" />
         </Grid>
 

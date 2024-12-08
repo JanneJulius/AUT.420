@@ -72,6 +72,12 @@ namespace PulpProcessAppDotNet4
         {
             ConnectionStatusTextBlock.Text = processCommunicator.IsConnected ? "Yhteys: online" : "Yhteys: offline";
 
+            // Disable StartPauseButton if not connected
+            //StartPauseButton.IsEnabled = processCommunicator.IsConnected;
+
+            // Disable ResetButton if not connected
+            //ResetButton.IsEnabled = processCommunicator.IsConnected;
+
             switch (processStateHandler.CurrentState)
             {
                 case ProcessState.Initialized:
