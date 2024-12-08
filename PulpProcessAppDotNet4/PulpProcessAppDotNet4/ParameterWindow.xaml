@@ -13,8 +13,6 @@
             <TextBox Name="DurationCookingTextBox" Width="100" Height="30" Margin="120,0,0,0" VerticalAlignment="Center" />
             <ComboBox Width="80" Height="30" Margin="230,0,0,0" VerticalAlignment="Center">
                 <ComboBoxItem Content="s" IsSelected="True"/>
-                <ComboBoxItem Content="min"/>
-                <ComboBoxItem Content="h"/>
             </ComboBox>
         </Grid>
 
